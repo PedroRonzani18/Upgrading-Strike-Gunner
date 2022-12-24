@@ -1,0 +1,27 @@
+Quantidade de inimigos: 1
+Type: 6
+TypeMove: 11
+NumberOfShots: 0
+TypeTiroManager: 0
+Velocidade X: 1
+Velocidade Y: 1
+Constante Midpoint x: 150
+Sinal'ix': 0
+Multiplicador ix: 0
+Constante Midpoint Y: 45
+Sinal'iy': 0
+Multiplicador iy: 0
+
+Quantidade de inimigos: 1
+Type: 5
+TypeMove: 18
+NumberOfShots: 1
+TypeTiroManager: 0
+Velocidade X: 1
+Velocidade Y: 1
+Constante Midpoint x: 150
+Sinal'ix': 0
+Multiplicador ix: 0
+Constante Midpoint Y: 45
+Sinal'iy': 0
+Multiplicador iy: 0
