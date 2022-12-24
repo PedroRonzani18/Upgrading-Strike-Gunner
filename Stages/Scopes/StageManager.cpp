@@ -3,10 +3,19 @@
 
 StageManager::StageManager()
 {
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     this->currentLevel = 0;
     this->endLevels = 2;
 
-    gameInit();
+    srand(time(0));
+    
+    initializeTextures();    //carrega texturas a usar
+    initializeStages();
+
+    Mix_OpenAudio(22050,MIX_DEFAULT_FORMAT,2,4096); // Cria um canal de música
+    addWavesScripts();
 }
 
 void StageManager::initLevel()
@@ -30,11 +39,6 @@ void StageManager::initializeStages()
     this->currentStage = menu;
 }
 
-int StageManager::gameOverVerify()
-{
-    return 0;
-}
-
 void StageManager::movements()
 {
     currentStage->drawAndMove();
@@ -42,7 +46,7 @@ void StageManager::movements()
 
 void StageManager::colision()
 {
-     currentStage->colider();
+    currentStage->colider();
 }
 
 void StageManager::timer()
@@ -52,6 +56,8 @@ void StageManager::timer()
     callWave();
 
     currentStage->timeCounter();
+
+    glutPostRedisplay();
 }
 
 void StageManager::callWave()
@@ -76,23 +82,4 @@ void StageManager::keyboardOfStage()
             initLevel();
             break;
     }
-}
-
-void StageManager::gameInit()
-{
-    srand(time(0));
-    
-    glClearColor(0, 0, 0, 1); 
-
-    initializeTextures();    //carrega texturas a usar
-
-    initializeStages();
-
-    // Cria um canal de música
-    Mix_OpenAudio(22050,MIX_DEFAULT_FORMAT,2,4096);
-
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-    addWavesScripts();
 }

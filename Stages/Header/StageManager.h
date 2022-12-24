@@ -34,10 +34,7 @@ class StageManager {
         void initLevel();
 
 
-        int gameOverVerify();
         void colision();
-        void initializePlayer();
-        void gameInit();
 };
 
 #endif

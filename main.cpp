@@ -52,47 +52,41 @@ void keyboard(unsigned char key, int x, int y)
     /*Dependendo da tecla pressionada, um vetor sinaliza
     0 mostrando que uma tecla foi desligada, ou
     1 mostrando que uma tecla foi ligada*/
-    switch (key)
+    switch ((char)toupper(key))
     {
         case 27: //ESC
             exit(0); 
             break;
             
-        case 'w': //Anda para frente
+         //Anda para frente
         case 'W':
-            if(keys[0] == 1)
-                keys[0] = 0;
-            else keys[0] = 1;
-            
+            if(keys[0] == 1) keys[0] = 0;
+            else             keys[0] = 1;
             auxKeys[0] = 1;
             break;
 
-        case 's': //Anda para trás
+        //Anda para trás
         case 'S':
-            if(keys[1] == 1)
-                keys[1] = 0;
-            else keys[1] = 1;
+            if(keys[1] == 1) keys[1] = 0;
+            else             keys[1] = 1;
             auxKeys[1] = 1;
             break;
 
-        case 'd': // Anda para direita
+        // Anda para direita
         case 'D':
-            if(keys[2] == 1)
-                keys[2] = 0;
-            else keys[2] = 1;
+            if(keys[2] == 1) keys[2] = 0;
+            else             keys[2] = 1;
             break;
 
-        case 'a': // Anda para esquerda
+        // Anda para esquerda
         case 'A':
-            if(keys[3] == 1)
-                keys[3] = 0;
-            else keys[3] = 1;
+            if(keys[3] == 1) keys[3] = 0;
+            else             keys[3] = 1;
             break;
 
         case ' ': // Atira 
-            if(keys[4] == 0)
-                keys[4] = 1;
-            else keys[4] = 0;
+            if(keys[4] == 0) keys[4] = 1;
+            else             keys[4] = 0;
             auxKeys[2] = 1;
             break;
     }
@@ -102,7 +96,6 @@ void timer(int t)
 {
     stageManager->timer();
 
-    glutPostRedisplay();
     glutTimerFunc(t, timer, t);
 }
 
