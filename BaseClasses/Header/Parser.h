@@ -38,6 +38,7 @@ class Parser
         static Parser parseEnemy(const char* fileName);
         static std::vector<const char*> parsePath(const char* fileName);
         static char* stringToArray(std::string str);
+        static std::vector<float> parseNumbers(const char* fileName);
 };
 
 #endif

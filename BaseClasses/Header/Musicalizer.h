@@ -15,6 +15,7 @@ class Musicalizer
         ~Musicalizer(){}
 
         Mix_Music* getMusic(int i){return this->musics[i];}
+        Mix_Music* getFinalMusic(){return this->musics.back();}
         std::vector<Mix_Music*> getMusics(){return this->musics;}
         void addMusic(Mix_Music* music){this->musics.push_back(music);}
 

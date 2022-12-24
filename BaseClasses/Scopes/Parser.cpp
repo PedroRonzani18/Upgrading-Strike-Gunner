@@ -97,3 +97,36 @@ Parser Parser::parseEnemy(const char* fileName)
 
     return returnParser;
 }
+
+std::vector<float> Parser::parseNumbers(const char* fileName)
+{
+    std::fstream arquivo;
+    std::string linha;
+    std::string temp;
+    float found;
+    std::stringstream ss;
+    std::vector<float> values;
+    
+    arquivo.open(fileName,std::fstream::in);
+
+    if(arquivo.is_open())
+    {
+        while(getline(arquivo,linha))
+        {
+            ss.clear(); ss.str("");
+            ss << linha;
+
+            while(!ss.eof())
+            {
+                ss >> temp;
+
+                if(std::stringstream(temp) >> found)
+                    values.push_back(found);
+                                
+                temp = "";
+            }
+        }
+    }
+
+    return values;
+}

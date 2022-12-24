@@ -6,19 +6,15 @@ Level::Level(const int &level)
 {
     srand(time(0));
     std::vector<int> auxWaves;
-    switch (level)
-    {
-        case 0:
-            addWavesScripts();
-            auxWaves = {25, 5, 6, 18, 23, 4, 8, 16, 20, 3, 24, 21, 0}; // executa todas as waves e para na wave 0
-            initBackgrounds(0);
-            break;
+    std::string fullPath = "Assets/Scripts/Waves/orderLevel" + std::to_string(level+1) + ".txt";
 
-        case 1:
-            auxWaves = {26, 11, 18, 13, 14, 17, 19, 19, 19, 15, 22, 12, 99, 100, 27, 49, 50, 0};
-            initBackgrounds(1);
-            break;
-    }
+    //25, 5, 6, 18, 23, 4, 8, 16, 20, 3, 24, 21, 0
+    //26, 11, 18, 13, 14, 17, 19, 19, 19, 15, 22, 12, 99, 100, 27, 49, 50, 0
+
+    for(auto number: Parser::parseNumbers(Parser::stringToArray(fullPath)))
+        auxWaves.push_back(number);
+
+    initBackgrounds(level);
 
     player.setMidPoint(0, -80);
     this->addWaves(auxWaves);
@@ -29,7 +25,7 @@ Level::Level(const int &level)
 void Level::startMusic(int level)
 {
     Mix_FadeOutMusic(1);
-    std::string fullPath = "Assets/Scripts/Audios/level" + std::to_string(level+1) + "Musics.txt";
+    std::string fullPath = "Assets/Scripts/Musics/level" + std::to_string(level+1) + "Musics.txt";
 
     for(const char* path: Parser::parsePath(Parser::stringToArray(fullPath)))
         musicalizer->addMusic(Mix_LoadMUS(path));
@@ -37,7 +33,7 @@ void Level::startMusic(int level)
     // Inicia a reproducao da musica
     if(musicalizer->getMusics().size() > 0){
         if(!Mix_PausedMusic())
-            Mix_PlayMusic(musicalizer->getMusic(0),-1);
+            Mix_PlayMusic(musicalizer->getFinalMusic(),-1);
         Mix_VolumeMusic(70);
     }
 }
@@ -51,27 +47,20 @@ void Level::initBackgrounds(const int &typeBackground)
     switch (typeBackground)
     {
         case 0:
-
             b1.setDisplayListModel(textures[9]);
-            b1.setMidPoint(0, 0);
-            backgrounds.push_back(b1);
-
             b2.setDisplayListModel(textures[10]);
-            b2.setMidPoint(0, 200);
-            backgrounds.push_back(b2);
             break;
 
         case 1:
-
             b1.setDisplayListModel(textures[39]);
-            b1.setMidPoint(0, 0);
-            backgrounds.push_back(b1);
-
             b2.setDisplayListModel(textures[40]);
-            b2.setMidPoint(0, 200);
-            backgrounds.push_back(b2);
             break;
     }
+    
+    b1.setMidPoint(0, 0);
+    backgrounds.push_back(b1);
+    b2.setMidPoint(0, 200);
+    backgrounds.push_back(b2);
 }
 
 void Level::callWaves()
