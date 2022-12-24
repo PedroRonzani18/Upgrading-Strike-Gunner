@@ -1,27 +1,108 @@
 #include "../Header/Wave.h"
 #include "../../BaseClasses/Header/Parser.h"
+#include "../../GeneralFiles/Header/drawings.h"
 #include <stdio.h>
 #include <iostream>
+#include <map>
 
-std::vector<const char*> wavesPaths;
+using namespace std;
+
+vector<const char*> wavesPaths;
+vector<const char*> wavesNames;
+map<char*,const char*> wavesPathsMap;
+vector<pair<string,map<char*,const char*>>> wavesPathsVector;
+std::vector<const char*> wavesNombres;
+// classificação, com map com todas as waves daquela classe, tendo seu nome e seu caminho
+// CLASSE | NOME | CAMINHO
+
+// retorna classe e nome
+std::pair<std::string,char*> findName(std::string str)
+{
+    unsigned first = str.find("Assets/Scripts/Waves/") + sizeof("Assets/Scripts/Waves/")-1;
+    std::string strNew = str.substr (first);
+    std::string strNew2;
+    std::string classe;
+
+    if (strNew.find("BaseWaves") != std::string::npos) {
+        unsigned first = strNew.find("BaseWaves") + sizeof("BaseWaves");
+        strNew2 = strNew.substr (first);
+        classe = "BaseWaves";
+    } else if (strNew.find("ChadWaves") != std::string::npos) {
+        unsigned first = strNew.find("ChadWaves") + sizeof("ChadWaves");
+        strNew2 = strNew.substr (first);
+        classe = "ChadWaves";
+    } else if (strNew.find("TitleWaves") != std::string::npos) {
+        unsigned first = strNew.find("TitleWaves") + sizeof("TitleWaves");
+        strNew2 = strNew.substr (first);
+        classe = "TitleWaves";
+    }
+    return std::make_pair(classe,Parser::stringToArray(strNew2));
+    //return Parser::stringToArray(strNew2);
+}
 
 void addWavesScripts()
 {
-    for(const char* enemyPath: Parser::parsePath("Assets/Scripts/Waves/baseAllWaves.txt"))
+    for(const char* enemyPath: Parser::parsePath("Assets/Scripts/Waves/BaseWaves/baseAllWaves.txt"))
+    {
+        bool found = false;
         wavesPaths.push_back(enemyPath);
+
+        std::pair<std::string,char*> auxPair = findName((std::string)enemyPath);
+        wavesNombres.push_back(auxPair.second);
+
+        if(wavesPathsVector.size() == 0)
+        {
+            std::map<char*,const char*> auxMap;
+            auxMap.insert(std::pair<char*, const char*>(auxPair.second,enemyPath));
+            wavesPathsVector.push_back(std::make_pair(auxPair.first,auxMap));
+        }
+        else
+        {
+            for(size_t i=0; i<wavesPathsVector.size(); i++)
+            {
+                if(wavesPathsVector[i].first == auxPair.first){
+                    wavesPathsVector[i].second.insert(std::pair<char*, const char*>(auxPair.second,enemyPath));
+                    found = true;
+                }
+            }
+            if(!found)
+            {
+                std::map<char*,const char*> auxMap;
+                auxMap.insert(std::pair<char*, const char*>(auxPair.second,enemyPath));
+                wavesPathsVector.push_back(std::make_pair(auxPair.first,auxMap));
+            }
+            //wavesPathsMap.insert(std::pair<char*, const char*>(findName((std::string)enemyPath), enemyPath));
+        }
+    }
+}
+
+std::vector<Enemy> waveCallerNew(char* waveName)
+{
+    //return waveTemplate(wavesPathsMap[waveName]);
+    for(size_t i = 0; i<wavesPathsVector.size(); i++)
+    {
+        //cout << wavesPathsVector[i].first << endl;
+        if(wavesPathsVector[i].first == "BaseWaves" && wavesPathsVector[i].second.count(waveName))
+        {
+            auto it = wavesPathsVector[i].second.find(waveName);
+            return waveTemplate(it->second);
+        }
+    }
+
+    return std::vector<Enemy>();
 }
 
 std::vector<Enemy> waveCaller(int waveType)
 {
     srand(time(0));
+    if(waveType == 18) return waveKamikaseAcelerado18();
     
-    if(waveType < 25 && waveType != 18) return waveTemplate(wavesPaths[waveType-1]);
+    else if(waveType < 25) return waveTemplate(wavesPaths[waveType-1]);
 
-    else 
+    else if(waveType < 50)
     {
         switch (waveType)
         {
-            case 18: return waveKamikaseAcelerado18();
                 
             case 25: return waveLevel1();
                 
@@ -32,7 +113,14 @@ std::vector<Enemy> waveCaller(int waveType)
             case 28: return waveGameOver();
                 
             case 49: return waveCreditos();
-                
+        }
+    }
+
+    else 
+    {
+        switch (waveType)
+        {
+               
             case 50: return waveChad();
                 
             case 99: return waveBossEntrada();
@@ -42,6 +130,49 @@ std::vector<Enemy> waveCaller(int waveType)
     }
      // retorna vazio para função não reclamar >_<
     return std::vector<Enemy>();
+}
+
+std::vector<Enemy> waveTemplateChad(const char* path)
+{
+    std::vector<Enemy> aux;
+    Parser aP = Parser::parseEnemy(path);
+
+    for(int i=0; i<aP.linhas; i++)
+    {
+        for (int j = 0; j < aP.numberOfEnemies[i]; j++)
+        {
+            Enemy e1 = Enemy(aP.type[i],aP.typeMove[i],aP.numberOfShots[i],aP.typeTiroManager[i],aP.vx[i],aP.vy[i]);
+            e1.setMidPoint(aP.midpointConstantX[i] + aP.iXSignal[i]* j * aP.multiplyerX[i],
+                           aP.midpointConstantY[i] + aP.iYSignal[i]* j * aP.multiplyerY[i]);
+            e1.setDisplayListModel(textures[aP.textureId[i]]);
+            e1.setResize(aP.resize[i]);
+            aux.push_back(e1);
+            //printf("Midpoint: %f   %f\n",aP.midpointConstantX[i] + aP.iXSignal[i]* j * aP.multiplyerX[i],
+             //              aP.midpointConstantY[i] + aP.iYSignal[i]* j * aP.multiplyerY[i]);
+        }
+    }
+    return aux;
+}
+
+std::vector<Enemy> waveTemplateTitle(const char* path)
+{
+    std::vector<Enemy> aux;
+    Parser aP = Parser::parseEnemy(path);
+
+    for(int i=0; i<aP.linhas; i++)
+    {
+        for (int j = 0; j < aP.numberOfEnemies[i]; j++)
+        {
+            Enemy e1 = Enemy(aP.type[i],aP.typeMove[i],aP.numberOfShots[i],aP.typeTiroManager[i],aP.vx[i],aP.vy[i]);
+            e1.setMidPoint(aP.midpointConstantX[i] + aP.iXSignal[i]* j * aP.multiplyerX[i],
+                           aP.midpointConstantY[i] + aP.iYSignal[i]* j * aP.multiplyerY[i]);
+            e1.setDisplayListModel(textures[aP.textureId[i]]);
+            aux.push_back(e1);
+            //printf("Midpoint: %f   %f\n",aP.midpointConstantX[i] + aP.iXSignal[i]* j * aP.multiplyerX[i],
+             //              aP.midpointConstantY[i] + aP.iYSignal[i]* j * aP.multiplyerY[i]);
+        }
+    }
+    return aux;
 }
 
 std::vector<Enemy> waveTemplate(const char* path)

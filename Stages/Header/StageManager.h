@@ -27,7 +27,7 @@ class StageManager {
         void setCurrentStage(Stage* currentStage){this->currentStage = currentStage;}
 
         void keyboardOfStage();
-        void movements();
+        void display();
         void initializeStages();
         void callWave();
         void timer();

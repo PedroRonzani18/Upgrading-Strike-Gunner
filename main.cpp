@@ -1,19 +1,10 @@
 #include "Stages/Header/StageManager.h"
 
-using namespace std;
-
-#define radianoParaGraus(radianos) (radianos * (180.0 / M_PI))
-#define grausParaRadianos(graus) ((graus * M_PI) / 180.0)
-
 StageManager* stageManager;
 
 void display()
 {
-    glClear(GL_COLOR_BUFFER_BIT);
-    
-    stageManager->movements();
-
-    glutSwapBuffers();
+    stageManager->display();
 }
 
 void redimensionada(int width, int height) 
@@ -25,12 +16,9 @@ void redimensionada(int width, int height)
     float aspectRatio = ((float)width)/height;    
     float worldAspectRatio = ((float) direita)/ top;
     
-    if (aspectRatio < worldAspectRatio) 
-    {
+    if (aspectRatio < worldAspectRatio) {
         float h = width / worldAspectRatio;
-
         float y = (height - h)/2;
-
         glViewport(0, y, width, h);
     }
     
@@ -110,7 +98,7 @@ int main(int argc, char **argv)
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
     glutInitWindowSize(900, 1000);
     glutInitWindowPosition(540,0);
-    glutCreateWindow("C.T.C.");
+    glutCreateWindow("C.T.C");
 
     // função de inicializção do jogo
     initialize();

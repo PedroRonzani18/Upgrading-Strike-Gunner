@@ -39,9 +39,11 @@ void StageManager::initializeStages()
     this->currentStage = menu;
 }
 
-void StageManager::movements()
+void StageManager::display()
 {
+    glClear(GL_COLOR_BUFFER_BIT);
     currentStage->drawAndMove();
+    glutSwapBuffers();
 }
 
 void StageManager::colision()

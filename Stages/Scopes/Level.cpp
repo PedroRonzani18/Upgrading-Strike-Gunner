@@ -66,17 +66,19 @@ void Level::initBackgrounds(const int &typeBackground)
 void Level::callWaves()
 {
     std::vector<Enemy> auxiliar;
-    if ((waves.size() > 0) && (enemies.size() == 0))
+    if ((wavesNombres.size() > 0) && (enemies.size() == 0))
     {
         bossTime = 0;
-        auxiliar = waveCaller(waves[0]);
+        //auxiliar = waveCaller(waves[0]);
+        auxiliar = waveCallerNew((char*)wavesNombres[0]);
 
         for (Enemy e : auxiliar)
         {
             addEnemy(e);
         }
 
-        waves.erase(waves.begin());
+        //waves.erase(waves.begin());
+        wavesNombres.erase(wavesNombres.begin());
     }
 }
 
