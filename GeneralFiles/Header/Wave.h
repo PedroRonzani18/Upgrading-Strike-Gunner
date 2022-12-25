@@ -10,6 +10,8 @@
 
     //std::vector<Enemy> waveCaller(int waveType); // vector com os enemies que serão usados na wave
     std::vector<Enemy> waveCallerNew(const char* waveCaminho);
+    std::vector<Enemy> waveTemplateBoss(const char* path);
+    std::vector<Enemy> waveTemplateCreditos(const char* path);
 
 
     // Funções que determinam: 

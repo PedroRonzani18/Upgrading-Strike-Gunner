@@ -30,3 +30,8 @@ Assets/Scripts/Waves/TitleWaves/waveLevel2.txt
 Assets/Scripts/Waves/TitleWaves/waveMissaoConcluida.txt
 Assets/Scripts/Waves/ChadWaves/waveChad.txt
 Assets/Scripts/Waves/ChadWaves/waveChad.txt
+Assets/Scripts/Waves/BaseWaves/waveBossEntrada.txt
+Assets/Scripts/Waves/BossWaves/waveBoss.txt
+Assets/Scripts/Waves/BossWaves/waveBoss.txt
+Assets/Scripts/Waves/CreditosWaves/waveCreditos.txt
+Assets/Scripts/Waves/CreditosWaves/waveCreditos.txt

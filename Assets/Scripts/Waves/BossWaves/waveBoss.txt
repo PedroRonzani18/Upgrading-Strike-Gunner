@@ -1,0 +1,76 @@
+BossTime: 1
+
+Quantidade de inimigos: 1
+Type: 9
+TypeMove: -1
+NumberOfShots: 2
+TypeTiroManager: 2
+Velocidade X: -30
+Velocidade Y: 18
+Constante Midpoint x: -30
+Sinal'ix': 0
+Multiplicador ix: 0
+Constante Midpoint Y: 18
+Sinal'iy': 0
+Multiplicador iy: 0
+CurrentProjectileDamage: 0.5 
+
+Quantidade de inimigos: 1
+Type: 9
+TypeMove: -1
+NumberOfShots: 2
+TypeTiroManager: 2
+Velocidade X: 30
+Velocidade Y: 18
+Constante Midpoint x: 30
+Sinal'ix': 0
+Multiplicador ix: 0
+Constante Midpoint Y: 18
+Sinal'iy': 0
+Multiplicador iy: 0
+CurrentProjectileDamage: 0.5
+
+Quantidade de inimigos: 1
+Type: 11
+TypeMove: -2
+NumberOfShots: 3
+TypeTiroManager: 0
+Velocidade X: 40
+Velocidade Y: -15
+Constante Midpoint x: 40
+Sinal'ix': 0
+Multiplicador ix: 0
+Constante Midpoint Y: -15
+Sinal'iy': 0
+Multiplicador iy: 0
+CurrentProjectileDamage: 0.5
+
+Quantidade de inimigos: 1
+Type: 11
+TypeMove: -2
+NumberOfShots: 3
+TypeTiroManager: 0
+Velocidade X: -40
+Velocidade Y: -15
+Constante Midpoint x: -40
+Sinal'ix': 0
+Multiplicador ix: 0
+Constante Midpoint Y: -15
+Sinal'iy': 0
+Multiplicador iy: 0
+CurrentProjectileDamage: 0.5
+
+Quantidade de inimigos: 1
+Type: 12
+TypeMove: -2
+NumberOfShots: 3
+TypeTiroManager: 4
+Velocidade X: 0
+Velocidade Y: 0
+Constante Midpoint x: 0
+Sinal'ix': 0
+Multiplicador ix: 0
+Constante Midpoint Y: 0
+Sinal'iy': 0
+Multiplicador iy: 0
+CurrentProjectileDamage: 0.5

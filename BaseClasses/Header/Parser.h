@@ -8,6 +8,7 @@
 #include <sstream>
 #include <fstream>
 #include <algorithm>
+#include <utility>
 
 // OpenGL
 #include <GL/freeglut.h>
@@ -34,14 +35,21 @@ class Parser
         std::vector<float> multiplyerY;
         std::vector<GLuint> textureId;
         std::vector<float> resize;
+        std::vector<float> currentProjectileDamage;
+        std::vector<float> minX;
+        std::vector<float> minY;
+        std::vector<float> maxX;
+        std::vector<float> maxY;
+
+        float bossTime;
         float linhas;
 
         // Funcoes que leem arquivos script.txt e retornam um parser 
         // carregado com informacoes especificas para cada tipo de construtor
         static std::vector<const char*> parsePath(const char* fileName);
+        static Parser parseGeneral(const char* fileName);
         static char* stringToArray(std::string str);
         static std::string arrayToString(const char* arr);
-        static Parser parseGeneral(const char* fileName);
 };
 
 #endif

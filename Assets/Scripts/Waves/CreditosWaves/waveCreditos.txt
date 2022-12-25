@@ -1,0 +1,99 @@
+Quantidade de inimigos: 1
+Type: 10
+TypeMove: 17
+NumberOfShots: 0
+TypeTiroManager: 0
+Velocidade X: 0
+Velocidade Y: 0.14
+Constante Midpoint x: 0
+Sinal'ix': 0
+Multiplicador ix: 0
+Constante Midpoint Y: -200
+Sinal'iy': 0
+Multiplicador iy: 0
+TextureId: 54
+Resize: 1
+MinX: -90
+MaxX: 90
+MinY: -100
+MaxY: 100
+
+Quantidade de inimigos: 1
+Type: 10
+TypeMove: 17
+NumberOfShots: 0
+TypeTiroManager: 0
+Velocidade X: 0
+Velocidade Y: 0.14
+Constante Midpoint x: 0
+Sinal'ix': 0
+Multiplicador ix: 0
+Constante Midpoint Y: -400
+Sinal'iy': 0
+Multiplicador iy: 0
+TextureId: 55
+Resize: 1
+MinX: -90
+MaxX: 90
+MinY: -100
+MaxY: 100
+
+Quantidade de inimigos: 1
+Type: 10
+TypeMove: 17
+NumberOfShots: 0
+TypeTiroManager: 0
+Velocidade X: 0
+Velocidade Y: 0.14
+Constante Midpoint x: 0
+Sinal'ix': 0
+Multiplicador ix: 0
+Constante Midpoint Y: -600
+Sinal'iy': 0
+Multiplicador iy: 0
+TextureId: 56
+Resize: 1
+MinX: -90
+MaxX: 90
+MinY: -100
+MaxY: 100
+
+Quantidade de inimigos: 1
+Type: 10
+TypeMove: 17
+NumberOfShots: 0
+TypeTiroManager: 0
+Velocidade X: 0
+Velocidade Y: 0.14
+Constante Midpoint x: 0
+Sinal'ix': 0
+Multiplicador ix: 0
+Constante Midpoint Y: -800
+Sinal'iy': 0
+Multiplicador iy: 0
+TextureId: 57
+Resize: 1
+MinX: -90
+MaxX: 90
+MinY: -100
+MaxY: 100
+
+Quantidade de inimigos: 1
+Type: 10
+TypeMove: 17
+NumberOfShots: 0
+TypeTiroManager: 0
+Velocidade X: 0
+Velocidade Y: 0.14
+Constante Midpoint x: 0
+Sinal'ix': 0
+Multiplicador ix: 0
+Constante Midpoint Y: -1000
+Sinal'iy': 0
+Multiplicador iy: 0
+TextureId: 58
+Resize: 1
+MinX: -90
+MaxX: 90
+MinY: -100
+MaxY: 100

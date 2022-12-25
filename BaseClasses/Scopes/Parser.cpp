@@ -121,6 +121,12 @@ Parser Parser::parseGeneral(const char* fileName)
             else if(titulo == "Multiplicador iy") returnParser.multiplyerY.push_back(valor);
             else if(titulo == "TextureId") returnParser.textureId.push_back((GLuint)valor);
             else if(titulo == "Resize") returnParser.resize.push_back(valor);
+            else if(titulo == "CurrentProjectileDamage") returnParser.currentProjectileDamage.push_back(valor);
+            else if(titulo == "BossTime") returnParser.bossTime = valor;
+            else if(titulo == "MinX") returnParser.minX.push_back(valor);
+            else if(titulo == "MaxX") returnParser.maxX.push_back(valor);
+            else if(titulo == "MinY") returnParser.minY.push_back(valor);
+            else if(titulo == "MaxY") returnParser.maxY.push_back(valor);
         }
     }
 

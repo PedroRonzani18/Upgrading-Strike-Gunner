@@ -13,6 +13,8 @@ std::string findName(std::string str)
     if (str.find("BaseWaves")       != std::string::npos) return "BaseWaves";
     else if (str.find("ChadWaves")  != std::string::npos) return "ChadWaves";
     else if (str.find("TitleWaves") != std::string::npos) return "TitleWaves";
+    else if (str.find("BossWaves")  != std::string::npos) return "BossWaves";
+    else if (str.find("CreditosWaves") !=std::string::npos) return "CreditosWaves";
 
     return "erro";
 }
@@ -60,6 +62,8 @@ std::vector<Enemy> waveCallerNew(const char* waveCaminho)
                      if (par.first == "BaseWaves")  return waveTemplate(path);
                 else if (par.first == "TitleWaves") return waveTemplateTitle(path);
                 else if (par.first == "ChadWaves")  return waveTemplateChad(path);
+                else if (par.first == "BossWaves") return waveTemplateBoss(path);
+                else if(par.first == "CreditosWaves") return waveTemplateCreditos(path);
             }
         }
     }
@@ -67,50 +71,8 @@ std::vector<Enemy> waveCallerNew(const char* waveCaminho)
     return std::vector<Enemy>();
 }
 
-/*
-std::vector<Enemy> waveCaller(int waveType)
+std::vector<Enemy> waveTemplateCreditos(const char* path)
 {
-    srand(time(0));
-    if(waveType == 18) return waveKamikaseAcelerado18();
-    
-    //else if(waveType < 25) return waveTemplate(wavesPaths[waveType-1]);
-
-    else if(waveType < 50)
-    {
-        switch (waveType)
-        {
-                
-            case 25: return waveLevel1();
-                
-            case 26: return waveLevel2();
-                
-            case 27: return waveMissaoConcluida();
-                
-            case 28: return waveGameOver();
-                
-            case 49: return waveCreditos();
-        }
-    }
-
-    else 
-    {
-        switch (waveType)
-        {
-               
-            case 50: return waveChad();
-                
-            case 99: return waveBossEntrada();
-                
-            case 100: return waveBoss();
-        }
-    }
-     // retorna vazio para função não reclamar >_<
-    return std::vector<Enemy>();
-}
-*/
-std::vector<Enemy> waveTemplateChad(const char* path)
-{
-    std::cout << "Entrou" << std::endl;
     std::vector<Enemy> aux;
     Parser aP = Parser::parseGeneral(path);
 
@@ -123,6 +85,48 @@ std::vector<Enemy> waveTemplateChad(const char* path)
                            aP.midpointConstantY[i] + aP.iYSignal[i]* j * aP.multiplyerY[i]);
             e1.setDisplayListModel(textures[aP.textureId[i]]);
             e1.setResize(aP.resize[i]);
+            e1.setMax(aP.maxX[i],aP.maxY[i]);
+            e1.setMin(aP.minX[i],aP.minY[i]);
+            aux.push_back(e1);
+        }
+    }
+    return aux;
+}
+
+std::vector<Enemy> waveTemplateChad(const char* path)
+{
+    std::vector<Enemy> aux;
+    Parser aP = Parser::parseGeneral(path);
+
+    for(int i=0; i<aP.linhas; i++)
+    {
+        for (int j = 0; j < aP.numberOfEnemies[i]; j++)
+        {
+            Enemy e1 = Enemy(aP.type[i],aP.typeMove[i],aP.numberOfShots[i],aP.typeTiroManager[i],aP.vx[i],aP.vy[i]);
+            e1.setMidPoint(aP.midpointConstantX[i] + aP.iXSignal[i]* j * aP.multiplyerX[i],
+                           aP.midpointConstantY[i] + aP.iYSignal[i]* j * aP.multiplyerY[i]);
+            e1.setDisplayListModel(textures[aP.textureId[i]]);
+            e1.setResize(aP.resize[i]);
+            aux.push_back(e1);
+        }
+    }
+    return aux;
+}
+
+std::vector<Enemy> waveTemplateBoss(const char* path)
+{
+    std::vector<Enemy> aux;
+    Parser aP = Parser::parseGeneral(path);
+
+    for(int i=0; i<aP.linhas; i++)
+    {
+        for (int j = 0; j < aP.numberOfEnemies[i]; j++)
+        {
+            Enemy e1 = Enemy(aP.type[i],aP.typeMove[i],aP.numberOfShots[i],aP.typeTiroManager[i],aP.vx[i],aP.vy[i]);
+            e1.setMidPoint(aP.midpointConstantX[i] + aP.iXSignal[i]* j * aP.multiplyerX[i],
+                           aP.midpointConstantY[i] + aP.iYSignal[i]* j * aP.multiplyerY[i]);
+                           e1.getCurrentProjectile().setDamage(aP.currentProjectileDamage[i]);
+            bossTime = aP.bossTime;
             aux.push_back(e1);
         }
     }
