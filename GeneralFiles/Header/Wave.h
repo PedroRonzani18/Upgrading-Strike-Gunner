@@ -17,14 +17,12 @@
     //      1. tipos de inimigos chamados na wave
     //      2. posição inicial de cada inimigo
     //      3. quanidade de inimigos de cada wave
-    std::vector<Enemy> waveBaseTemplate(const char* path);
     std::vector<Enemy> waveTemplate(const char* path);
     std::vector<Enemy> waveTemplateTitle(const char* path);
     std::vector<Enemy> waveTemplateChad(const char* path);
     std::vector<Enemy> waveKamikaseAcelerado18();
-    std::vector<Enemy> waveChad();
-    std::vector<Enemy> waveBoss();
     std::vector<Enemy> waveBossEntrada();
     std::vector<Enemy> waveCreditos();
+    std::vector<Enemy> waveBoss();
 
 #endif

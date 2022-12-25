@@ -18,6 +18,7 @@
 class Parser
 {
     public:
+        Parser();
         std::vector<float> numberOfEnemies;
         std::vector<float> type;
         std::vector<float> typeMove;
@@ -37,13 +38,10 @@ class Parser
 
         // Funcoes que leem arquivos script.txt e retornam um parser 
         // carregado com informacoes especificas para cada tipo de construtor
-        static Parser parseEnemy(const char* fileName);
-        static Parser parseEnemyTexture(const char* fileName);
-        static Parser parseEnemyTextureResize(const char* fileName);
         static std::vector<const char*> parsePath(const char* fileName);
         static char* stringToArray(std::string str);
         static std::string arrayToString(const char* arr);
-        static std::vector<float> parseNumbers(const char* fileName);
+        static Parser parseGeneral(const char* fileName);
 };
 
 #endif

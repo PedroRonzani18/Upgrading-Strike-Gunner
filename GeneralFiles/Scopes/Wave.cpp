@@ -112,7 +112,7 @@ std::vector<Enemy> waveTemplateChad(const char* path)
 {
     std::cout << "Entrou" << std::endl;
     std::vector<Enemy> aux;
-    Parser aP = Parser::parseEnemyTextureResize(path);
+    Parser aP = Parser::parseGeneral(path);
 
     for(int i=0; i<aP.linhas; i++)
     {
@@ -132,9 +132,9 @@ std::vector<Enemy> waveTemplateChad(const char* path)
 std::vector<Enemy> waveTemplateTitle(const char* path)
 {
     std::vector<Enemy> aux;
-    Parser aP = Parser::parseEnemyTexture(path);
+    Parser aP = Parser::parseGeneral(path);
 
-    for(int i=0; i<aP.linhas; i++)
+    for(size_t i=0; i<aP.numberOfEnemies.size(); i++)
     {
         for (int j = 0; j < aP.numberOfEnemies[i]; j++)
         {
@@ -151,7 +151,7 @@ std::vector<Enemy> waveTemplateTitle(const char* path)
 std::vector<Enemy> waveTemplate(const char* path)
 {
     std::vector<Enemy> aux;
-    Parser aP = Parser::parseEnemy(path);
+    Parser aP = Parser::parseGeneral(path);
 
     for(int i=0; i<aP.linhas; i++)
     {
@@ -192,24 +192,41 @@ std::vector<Enemy> waveBossEntrada()
     return aux;
 }
 
-std::vector<Enemy> waveChad()
+std::vector<Enemy> waveBoss() // O boss e muito zika 
 {
     std::vector<Enemy> aux;
 
-    Enemy e1 = Enemy(10, 26, 0, 0, 0, 1); // chad
-    e1.setMidPoint(0,-180);
-    e1.setDisplayListModel(textures[44]);
-    e1.setResize(0.6);
+    bossTime = 1;
+
+    Enemy e1 = Enemy(9, -1, 2, 2, 0, 0); // torreta grossa
+    e1.getCurrentProjectile().setDamage(0.5);
+    e1.setMidPoint(-30,18);
+    e1.setVelocity(-30,18);
     aux.push_back(e1);
 
-    Enemy e2 = Enemy(10, 27, 0, 0, 0, 1); // balão
-    e2.setMidPoint(40,-105);
-    e2.setDisplayListModel(textures[49]);
-    e2.setResize(0.7);
+    e1.setMidPoint(30,18);
+    e1.setVelocity(30,18);
+    aux.push_back(e1);
+
+    Enemy e2 = Enemy(11, -2, 3, 0, 0, 0); // triple turret
+    e2.getCurrentProjectile().setDamage(0.5);
+    e2.setMidPoint(40,-15);
+    e2.setVelocity(40,-15);
     aux.push_back(e2);
 
-    return aux;
+    e2.setMidPoint(-40, -15);
+    e2.setVelocity(-40, -15);
+    aux.push_back(e2);
+
+    Enemy e3 = Enemy(12, -2, 3, 4, -0.2, -0.8); // triple turret GG
+    e3.getCurrentProjectile().setDamage(0.5);
+    e3.setMidPoint(0,0);
+    e3.setVelocity(0,0);
+    aux.push_back(e3);
+
+    return aux; 
 }
+
 
 std::vector<Enemy> waveCreditos()
 {

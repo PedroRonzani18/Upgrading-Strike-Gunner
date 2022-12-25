@@ -25,6 +25,7 @@ Assets/Scripts/Waves/BaseWaves/waveTorretaParadaComEnimigos24.txt
 Assets/Scripts/Waves/TitleWaves/waveGameOver.txt  
 Assets/Scripts/Waves/TitleWaves/waveGameOver.txt  
 Assets/Scripts/Waves/TitleWaves/waveLevel1.txt
+Assets/Scripts/Waves/TitleWaves/waveLevel1.txt
 Assets/Scripts/Waves/TitleWaves/waveLevel2.txt
 Assets/Scripts/Waves/TitleWaves/waveMissaoConcluida.txt
 Assets/Scripts/Waves/ChadWaves/waveChad.txt

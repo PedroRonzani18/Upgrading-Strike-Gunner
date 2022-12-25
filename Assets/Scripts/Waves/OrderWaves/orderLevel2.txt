@@ -1,6 +1,5 @@
 Assets/Scripts/Waves/TitleWaves/waveLevel2.txt
 Assets/Scripts/Waves/BaseWaves/waveSegueZigZag11.txt
-Assets/Scripts/Waves/BaseWaves/waveKamikaseAcelerado18.txt
 Assets/Scripts/Waves/BaseWaves/waveSegueParabolaAlta13.txt
 Assets/Scripts/Waves/BaseWaves/waveSegueParabolaAltaReversa14.txt
 Assets/Scripts/Waves/BaseWaves/wave2TanksElipses17.txt
