@@ -1,3 +1,4 @@
+Assets/Scripts/Waves/TitleWaves/waveLevel1.txt
 Assets/Scripts/Waves/BaseWaves/waveBasicShipParabolaAlta5.txt
 Assets/Scripts/Waves/BaseWaves/waveBasicShipParabolaAltaReversa6.txt
 Assets/Scripts/Waves/BaseWaves/waveTorretaEliptica23.txt

@@ -1,12 +1,11 @@
 #include "../Header/Level.h"
-
-        #include <iostream>
+#include <iostream>
 
 Level::Level(const int &level)
 {
     srand(time(0));
     std::vector<const char*> auxWaves;
-    std::string fullPath = "Assets/Scripts/Waves/orderLevel" + std::to_string(level+1) + ".txt";
+    std::string fullPath = "Assets/Scripts/Waves/OrderWaves/orderLevel" + std::to_string(level+1) + ".txt";
 
     //25, 5, 6, 18, 23, 4, 8, 16, 20, 3, 24, 21, 0
     //26, 11, 18, 13, 14, 17, 19, 19, 19, 15, 22, 12, 99, 100, 27, 49, 50, 0
@@ -69,7 +68,7 @@ void Level::callWaves()
     if ((waves.size() > 0) && (enemies.size() == 0))
     {
         bossTime = 0;
-
+        //std::cout << waves.front() << std::endl;
         for (Enemy e : waveCallerNew((char*)waves.front())) addEnemy(e);
         
         waves.erase(waves.begin());

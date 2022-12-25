@@ -204,7 +204,7 @@ Parser Parser::parseEnemyTexture(const char* fileName)
 Parser Parser::parseEnemyTextureResize(const char* fileName)
 {
     Parser returnParser;
-
+    
     std::fstream arquivo;
     std::string linha;
     std::string temp;

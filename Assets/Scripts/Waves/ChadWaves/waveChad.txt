@@ -4,7 +4,7 @@ TypeMove: 26
 NumberOfShots: 0
 TypeTiroManager: 0
 Velocidade X: 0
-Velocidade Y: -1
+Velocidade Y: 1
 Constante Midpoint x: 0
 Sinal'ix': 0
 Multiplicador ix: 0
@@ -20,7 +20,7 @@ TypeMove: 27
 NumberOfShots: 0
 TypeTiroManager: 0
 Velocidade X: 0
-Velocidade Y: -1
+Velocidade Y: 1
 Constante Midpoint x: 40
 Sinal'ix': 0
 Multiplicador ix: 0
