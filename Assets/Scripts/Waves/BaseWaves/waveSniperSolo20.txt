@@ -6,8 +6,6 @@ TypeTiroManager: 3
 Velocidade X: 1
 Velocidade Y: 1
 Constante Midpoint x: 0
-Sinal'ix': 0
 Multiplicador ix: 0
 Constante Midpoint Y: 150
-Sinal'iy': 0
 Multiplicador iy: 0

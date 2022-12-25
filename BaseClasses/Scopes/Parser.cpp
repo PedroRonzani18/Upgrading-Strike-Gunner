@@ -11,10 +11,10 @@ Parser::Parser()
     typeTiroManager.resize(0);
     vx.resize(0);
     vy.resize(0);
-    midpointConstantX.resize(0);
+    midConstX.resize(0);
     iXSignal.resize(0);
     multiplyerX.resize(0);
-    midpointConstantY.resize(0);
+    midConstY.resize(0);
     iYSignal.resize(0);
     multiplyerY.resize(0);
      textureId.resize(0);
@@ -117,10 +117,10 @@ Parser Parser::parseGeneral(const char* fileName)
             else if(titulo == "TypeTiroManager") returnParser.typeTiroManager.push_back(valor);
             else if(titulo == "Velocidade X") returnParser.vx.push_back(valor);
             else if(titulo == "Velocidade Y") returnParser.vy.push_back(valor);
-            else if(titulo == "Constante Midpoint x") returnParser.midpointConstantX.push_back(valor);
+            else if(titulo == "Constante Midpoint x") returnParser.midConstX.push_back(valor);
             else if(titulo == "Sinal'ix'") returnParser.iXSignal.push_back(valor);
             else if(titulo == "Multiplicador ix") returnParser.multiplyerX.push_back(valor);
-            else if(titulo == "Constante Midpoint Y") returnParser.midpointConstantY.push_back(valor);
+            else if(titulo == "Constante Midpoint Y") returnParser.midConstY.push_back(valor);
             else if(titulo == "Sinal'iy'") returnParser.iYSignal.push_back(valor);
             else if(titulo == "Multiplicador iy") returnParser.multiplyerY.push_back(valor);
             else if(titulo == "TextureId") returnParser.textureId.push_back((GLuint)valor);
@@ -131,10 +131,12 @@ Parser Parser::parseGeneral(const char* fileName)
             else if(titulo == "MaxX") returnParser.maxX.push_back(valor);
             else if(titulo == "MinY") returnParser.minY.push_back(valor);
             else if(titulo == "MaxY") returnParser.maxY.push_back(valor);
+            else if(titulo == "RandResto") returnParser.randResto.push_back(valor);
+            else if(titulo == "RandMinus") returnParser.randMinus.push_back(valor);
         }
     }
 
-    else std::cout << "Erro de abertura" << std::endl;
+    else if (strcmp(fileName, "0"))std::cout << "Erro de abertura" << std::endl;
     returnParser.linhas = returnParser.numberOfEnemies.size();
     //std::cout << std::endl;
     arquivo.close();

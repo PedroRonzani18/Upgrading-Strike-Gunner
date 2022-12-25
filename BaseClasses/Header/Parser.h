@@ -30,10 +30,10 @@ class Parser
         std::vector<float> typeTiroManager;
         std::vector<float> vx;
         std::vector<float> vy;
-        std::vector<float> midpointConstantX;
+        std::vector<float> midConstX;
         std::vector<float> iXSignal;
         std::vector<float> multiplyerX;
-        std::vector<float> midpointConstantY;
+        std::vector<float> midConstY;
         std::vector<float> iYSignal;
         std::vector<float> multiplyerY;
         std::vector<GLuint> textureId;
@@ -43,6 +43,8 @@ class Parser
         std::vector<float> minY;
         std::vector<float> maxX;
         std::vector<float> maxY;
+        std::vector<int> randResto;
+        std::vector<float> randMinus;
 
         float bossTime;
         float linhas;

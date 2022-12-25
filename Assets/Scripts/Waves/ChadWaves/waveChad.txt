@@ -6,10 +6,8 @@ TypeTiroManager: 0
 Velocidade X: 0
 Velocidade Y: 1
 Constante Midpoint x: 0
-Sinal'ix': 0
 Multiplicador ix: 0
 Constante Midpoint Y: -180
-Sinal'iy': 0
 Multiplicador iy: 0
 TextureId: 44
 Resize: 0.6
@@ -22,10 +20,8 @@ TypeTiroManager: 0
 Velocidade X: 0
 Velocidade Y: 1
 Constante Midpoint x: 40
-Sinal'ix': 0
 Multiplicador ix: 0
 Constante Midpoint Y: -105
-Sinal'iy': 0
 Multiplicador iy: 0
 TextureId: 49
 Resize: 0.7

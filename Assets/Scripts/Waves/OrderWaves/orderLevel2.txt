@@ -9,7 +9,7 @@ Assets/Scripts/Waves/BaseWaves/waveKamikaseSegue19.txt
 Assets/Scripts/Waves/BaseWaves/waveSegueTerceiroGrauComTankEliptico15.txt
 Assets/Scripts/Waves/BaseWaves/waveTorretaReta22.txt
 Assets/Scripts/Waves/BaseWaves/waveSegue3Parabola12.txt
-Assets/Scripts/Waves/BaseWaves/waveBossEntrada.txt
+Assets/Scripts/Waves/BossWaves/waveBossEntrada.txt
 Assets/Scripts/Waves/BossWaves/waveBoss.txt
 Assets/Scripts/Waves/CreditosWaves/waveCreditos.txt
 Assets/Scripts/Waves/ChadWaves/waveChad.txt

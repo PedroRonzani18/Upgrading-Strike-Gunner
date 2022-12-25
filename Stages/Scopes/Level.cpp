@@ -65,11 +65,10 @@ void Level::initBackgrounds(const int &typeBackground)
 void Level::callWaves()
 {
     std::vector<Enemy> auxiliar;
-    if ((waves.size() > 0) && (enemies.size() == 0))
+    if ((!waves.empty()) && (enemies.empty()))
     {
         bossTime = 0;
-        //std::cout << waves.front() << std::endl;
-        for (Enemy e : waveCallerNew((char*)waves.front())) addEnemy(e);
+        for (Enemy enemy : waveTemplateGeneral(waves.front())) addEnemy(enemy);
         
         waves.erase(waves.begin());
     }
@@ -114,8 +113,6 @@ int Level::stageKeyboard()
         if(player.getResize() == 0.5){
             enemies.clear();
             waves.clear();
-            
-            //waves.push_back("Assets/Sripts/Waves/TitleWaves/waveGameOver.txt");
             waves.push_back(0);
         }
 

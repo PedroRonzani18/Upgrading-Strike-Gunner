@@ -6,10 +6,8 @@ TypeTiroManager: 0
 Velocidade X: -0.75
 Velocidade Y: -0.75
 Constante Midpoint x: 0
-Sinal'ix': 0
 Multiplicador ix: 0
 Constante Midpoint Y: 150
-Sinal'iy': 1
 Multiplicador iy: 30
 
 Quantidade de inimigos: 30
@@ -20,10 +18,8 @@ TypeTiroManager: 0
 Velocidade X: -0.75
 Velocidade Y: -0.75
 Constante Midpoint x: 0
-Sinal'ix': 0
 Multiplicador ix: 0
 Constante Midpoint Y: 150
-Sinal'iy': 1
 Multiplicador iy: 30
 
 Quantidade de inimigos: 30
@@ -34,8 +30,6 @@ TypeTiroManager: 0
 Velocidade X: -0.75
 Velocidade Y: -0.75
 Constante Midpoint x: 0
-Sinal'ix': 0
 Multiplicador ix: 0
 Constante Midpoint Y: 150
-Sinal'iy': 1
 Multiplicador iy: 30
