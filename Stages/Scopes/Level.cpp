@@ -5,13 +5,13 @@
 Level::Level(const int &level)
 {
     srand(time(0));
-    std::vector<int> auxWaves;
+    std::vector<const char*> auxWaves;
     std::string fullPath = "Assets/Scripts/Waves/orderLevel" + std::to_string(level+1) + ".txt";
 
     //25, 5, 6, 18, 23, 4, 8, 16, 20, 3, 24, 21, 0
     //26, 11, 18, 13, 14, 17, 19, 19, 19, 15, 22, 12, 99, 100, 27, 49, 50, 0
 
-    for(auto number: Parser::parseNumbers(Parser::stringToArray(fullPath)))
+    for(auto number: Parser::parsePath(Parser::stringToArray(fullPath)))
         auxWaves.push_back(number);
 
     initBackgrounds(level);
@@ -66,19 +66,13 @@ void Level::initBackgrounds(const int &typeBackground)
 void Level::callWaves()
 {
     std::vector<Enemy> auxiliar;
-    if ((wavesNombres.size() > 0) && (enemies.size() == 0))
+    if ((waves.size() > 0) && (enemies.size() == 0))
     {
         bossTime = 0;
-        //auxiliar = waveCaller(waves[0]);
-        auxiliar = waveCallerNew((char*)wavesNombres[0]);
 
-        for (Enemy e : auxiliar)
-        {
-            addEnemy(e);
-        }
-
-        //waves.erase(waves.begin());
-        wavesNombres.erase(wavesNombres.begin());
+        for (Enemy e : waveCallerNew((char*)waves.front())) addEnemy(e);
+        
+        waves.erase(waves.begin());
     }
 }
 
@@ -122,7 +116,7 @@ int Level::stageKeyboard()
             enemies.clear();
             waves.clear();
             
-            waves.push_back(28);
+            //waves.push_back("Assets/Sripts/Waves/TitleWaves/waveGameOver.txt");
             waves.push_back(0);
         }
 

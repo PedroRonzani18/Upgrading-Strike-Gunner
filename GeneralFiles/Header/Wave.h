@@ -5,13 +5,11 @@
 #include "../../BaseClasses/Header/Enemy.h"
 #include "globalParameters.h"
 
-extern std::vector<const char*> wavesPaths;
-extern std::vector<const char*> wavesNombres;
 
     void addWavesScripts();
 
     std::vector<Enemy> waveCaller(int waveType); // vector com os enemies que serão usados na wave
-    std::vector<Enemy> waveCallerNew(char* waveCaminho);
+    std::vector<Enemy> waveCallerNew(const char* waveCaminho);
 
 
     // Funções que determinam: 

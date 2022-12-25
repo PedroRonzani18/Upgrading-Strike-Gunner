@@ -19,7 +19,7 @@ class Stage
         Score scorePontis;
 
         int ammountOfButtons;
-        std::vector<int> waves;
+        std::vector<const char*> waves;
         Button focusButton;
         Boss boss;
         Player player;
@@ -44,10 +44,10 @@ class Stage
         Score& getScorePontis(){return this->scorePontis;}
         void setScorePontis(const Score& scorePontis){this->scorePontis = scorePontis;}
 
-        std::vector<int> getWaves(){return this->waves;}
-        void addWave(const int& waveId){this->waves.push_back(waveId);}
-        void addWaves(std::vector<int>wavesAux){waves.insert(waves.end(),wavesAux.begin(),wavesAux.end());}
-        int getWave(const int& pos){return waves[pos];}
+        std::vector<const char*> getWaves(){return this->waves;}
+        void addWave(const char* waveId){this->waves.push_back(waveId);}
+        void addWaves(std::vector<const char*>wavesAux){waves.insert(waves.end(),wavesAux.begin(),wavesAux.end());}
+        const char* getWave(const int& pos){return waves[pos];}
 
         int getAmmountOfButtons(){return ammountOfButtons;}
         void setAmmountOfButtons();

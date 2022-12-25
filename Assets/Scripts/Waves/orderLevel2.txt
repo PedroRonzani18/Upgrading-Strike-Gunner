@@ -1,1 +1,11 @@
-26, 11, 18, 13, 14, 17, 19, 19, 19, 15, 22, 12, 99, 100, 27, 49, 50, 0
+Assets/Scripts/Waves/BaseWaves/waveBasicShipParabolaAlta5.txt
+Assets/Scripts/Waves/BaseWaves/waveBasicShipParabolaAltaReversa6.txt
+Assets/Scripts/Waves/BaseWaves/waveTorretaEliptica23.txt
+Assets/Scripts/Waves/BaseWaves/waveBasicShip3Parabola4.txt
+Assets/Scripts/Waves/BaseWaves/waveBasicShipTerceiroGrauComTankEliptico8.txt
+Assets/Scripts/Waves/BaseWaves/waveTankBateVolta16.txt
+Assets/Scripts/Waves/BaseWaves/waveSniperSolo20.txt
+Assets/Scripts/Waves/BaseWaves/waveBasicShipZigZag3.txt
+Assets/Scripts/Waves/BaseWaves/waveTorretaParadaComEnimigos24.txt
+Assets/Scripts/Waves/BaseWaves/waveSniperSoloComTank21.txt
+0
