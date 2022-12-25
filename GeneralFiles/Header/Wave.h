@@ -23,8 +23,6 @@
     std::vector<Enemy> waveTemplateTitle(const char* path);
     std::vector<Enemy> waveTemplateChad(const char* path);
     std::vector<Enemy> waveKamikaseAcelerado18();
-    std::vector<Enemy> waveBossEntrada();
-    std::vector<Enemy> waveCreditos();
-    std::vector<Enemy> waveBoss();
+    std::vector<Enemy> waveTemplateGeneral(const char* path);
 
 #endif

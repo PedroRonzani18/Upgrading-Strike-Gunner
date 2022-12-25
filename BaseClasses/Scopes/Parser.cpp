@@ -72,6 +72,10 @@ std::vector<const char*> Parser::parsePath(const char* fileName)
     return returnVector;
 }
 
+void Parser::completeDefaultValues(Parser* parser)
+{
+}
+
 Parser Parser::parseGeneral(const char* fileName)
 {
     Parser returnParser;

@@ -18,6 +18,9 @@
 
 class Parser
 {
+    private:
+        void completeDefaultValues(Parser* parser);
+
     public:
         Parser();
         std::vector<float> numberOfEnemies;
