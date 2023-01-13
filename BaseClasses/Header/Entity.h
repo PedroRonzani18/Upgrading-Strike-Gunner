@@ -19,6 +19,7 @@ class Entity{
 
     public:
         Entity();
+        Entity(const int& displayListModel, const GLboolean& onScreen, const OrderedPair& midPoint, const OrderedPair& max, const OrderedPair& min, const double& resize);
 
         int getDisplayListModel()const{return this->displayListModel;}
         void setDisplayListModel(const int& displayListModel){this->displayListModel = displayListModel;}

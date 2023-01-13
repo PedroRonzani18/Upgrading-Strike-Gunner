@@ -5,6 +5,11 @@
 
 MovableEntity::MovableEntity() : Entity(){}
 
+MovableEntity::MovableEntity(const OrderedPair& velocity, const double& angle, const double& angularSpeed, const double& hp, const int& type, const int& typeMove,
+                             const int& displayListModel, const GLboolean& onScreen, const OrderedPair& midPoint, const OrderedPair& max, const OrderedPair& min, const double& resize) : 
+    Entity(displayListModel, onScreen,midPoint, max, min, resize)
+    {}
+
 
 void MovableEntity::generalHitBoxMovement()
 {

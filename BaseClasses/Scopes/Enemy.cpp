@@ -1,5 +1,6 @@
 #include "../Header/Enemy.h"
 #include "../../GeneralFiles/Header/globalParameters.h"
+#include <time.h>
 
 #define radianoParaGraus(radianos) (radianos * (180.0 / M_PI))
 #define grausParaRadianos(graus) ((graus * M_PI) / 180.0)
@@ -11,6 +12,44 @@ Enemy::Enemy(const int& type, const int& typeMove, const int& numberOfShots, con
     setNumberOfShots(numberOfShots);
     setTypeTiroManager(typeTiroManager);
     setVelocity(vx, vy);
+}
+
+Enemy::Enemy(int killValue, int dropPercentage, GLboolean onscreenTestable, OrderedPair followPoint, int continueMove, 
+             const OrderedPair& velocity, const double& angle, const double& angularSpeed, const double& hp, const int& type, const int& typeMove,
+             const int& displayListModel, const GLboolean& onScreen, const OrderedPair& midPoint, const OrderedPair& max, const OrderedPair& min, const double& resize,
+             const Projectile& currentProjectile, const int& numberOfShots, const int& typeTiroManager, const int& fireRatePeriod, const double& alteredFireRate):
+
+    MovableEntity(velocity, angle, angularSpeed, hp, type, typeMove, displayListModel, onScreen, midPoint, max, min, resize),
+    Ballistic(currentProjectile, numberOfShots, typeTiroManager, fireRatePeriod, alteredFireRate),
+
+    killValue(killValue),
+    dropPercentage(dropPercentage),
+    onscreenTestable(onscreenTestable),
+    followPoint(followPoint),
+    continueMove(continueMove)
+    {}
+
+
+Enemy Enemy::enemySelector(const int& type)
+{
+    srand(time(0));
+    // this->type = type;
+    // this->onScreen = GL_TRUE;
+    contador = 0;
+
+    switch (type)
+    {
+        case 0:
+            return Enemy(55,15,GL_FALSE, OrderedPair(), 0, 
+                        OrderedPair(1,1), 180, 0, 4,type, 0, 
+                        textures[11], GL_TRUE, OrderedPair(), OrderedPair(20, 20), OrderedPair(-20, -20), 0.5,
+                        Projectile(3), 0, 0, 0, 0);
+
+        default:
+            return Enemy();
+
+    }
+
 }
 
 Enemy::Enemy(const int& type) : MovableEntity()

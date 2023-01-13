@@ -18,7 +18,7 @@ class Ballistic{
         
         Ballistic();
 
-        Ballistic(const double& alteredFireRate, const Projectile& currentProjectile, const int& numberOfShots);
+        Ballistic(const Projectile& currentProjectile, const int& numberOfShots, const int& typeTiroManager, const int& fireRatePeriod, const double& alteredFireRate);
 
         Projectile& getCurrentProjectile(){return this->currentProjectile;}
         void setCurrentProjectile(const Projectile& currentProjectile){this->currentProjectile = currentProjectile;}

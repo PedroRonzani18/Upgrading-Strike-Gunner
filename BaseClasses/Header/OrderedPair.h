@@ -5,7 +5,8 @@ struct OrderedPair{
     double x;
     double y;
 
-    OrderedPair();
+    OrderedPair(){}
+    OrderedPair(const double x, const double y);
 };
 
 #endif

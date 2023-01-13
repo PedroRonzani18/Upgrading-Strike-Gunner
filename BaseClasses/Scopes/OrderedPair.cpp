@@ -1,4 +1,5 @@
 #include "../Header/OrderedPair.h"
 
-OrderedPair::OrderedPair()
-{}
+OrderedPair::OrderedPair(const double x, const double y):
+    x(x), y(y)
+    {}
