@@ -16,7 +16,7 @@ class Player: public MovableEntity, public Ballistic
 
         void setHp(const double& hp);
 
-        int getImortality(){return imortality;}
+        int getImortality()const{return imortality;}
         void setImortality(const int& imortality){this->imortality = imortality;}
 
         Score& getScoreHp(){return this->scoreHp;}
@@ -26,10 +26,10 @@ class Player: public MovableEntity, public Ballistic
         void scaleMove(const double& scale) override;
 
         std::vector<Projectile> fire() override;
-        Projectile createProject(Projectile* auxP, double angle);
+        Projectile createProject(Projectile& auxP, const double& angle);
 
         void deathMove();
-        void upgradeManager(int upgradeType);
+        void upgradeManager(const int& upgradeType);
         void damage();
 
 };

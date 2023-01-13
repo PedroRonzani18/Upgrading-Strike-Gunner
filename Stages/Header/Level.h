@@ -23,7 +23,8 @@ class Level: public Stage
                         // além de criar os coletáveis a uma taxa de drop pré-definida no enemy
 
         Enemy* smallestDistanceEnemyPlayer(MovableEntity* m1); // encontra o enemy mais próximo do player a ser seguido pelo tiro que segue
-        void startMusic(int l);
+        void startMusic();
+        void addMusic(int level);
 
 
     public:
@@ -33,7 +34,6 @@ class Level: public Stage
 
         void drawAndMove() override;
         int stageKeyboard() override;
-        void drawScore(); // desenha o score do level
 
         void timeCounter() override; // gerencia os contradores de tempo específicos
         

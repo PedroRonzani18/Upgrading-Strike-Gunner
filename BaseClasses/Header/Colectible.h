@@ -11,9 +11,9 @@ class Colectible: public MovableEntity{
         int upgradeType;
 
     public:
-        Colectible(double midX, double midY);
+        Colectible(const double& midX, const double& midY);
 
-        int getUpgradeType(){return this->upgradeType;}
+        int getUpgradeType()const{return this->upgradeType;}
         void setUpgradeType(const int& upgradeType){this->upgradeType = upgradeType;}
 
         void move() override;

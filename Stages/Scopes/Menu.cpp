@@ -23,7 +23,7 @@ Menu::Menu()
     Button emphasisButton;
     emphasisButton.setDisplayListModel(textures[8]);
     emphasisButton.setCurrentPosition(1);
-    emphasisButton.setMidPoint(startButton.getMidPoint().getX() - 60, startButton.getMidPoint().getY());
+    emphasisButton.setMidPoint(startButton.getMidPoint().x - 60, startButton.getMidPoint().y);
     this->setFocusButton(emphasisButton);
 
     getBackgrounds().resize(0);
@@ -50,7 +50,7 @@ int Menu::stageKeyboard()
         {
             if (b.getCurrentPosition() == this->getFocusButton().getCurrentPosition())
             {
-                getFocusButton().setMidPoint(b.getMidPoint().getX() - 60, b.getMidPoint().getY());
+                getFocusButton().setMidPoint(b.getMidPoint().x - 60, b.getMidPoint().y);
             }
         }
     }
@@ -69,7 +69,7 @@ int Menu::stageKeyboard()
         {
             if (b.getCurrentPosition() == this->getFocusButton().getCurrentPosition())
             {
-                getFocusButton().setMidPoint(b.getMidPoint().getX() - 60, b.getMidPoint().getY());
+                getFocusButton().setMidPoint(b.getMidPoint().x - 60, b.getMidPoint().y);
             }
         }
     }
@@ -98,16 +98,16 @@ void Menu::drawButtons()
     for (Button b : getButtons())
     {
         glPushMatrix();
-        glTranslatef(b.getMidPoint().getX(),
-                     b.getMidPoint().getY(),
+        glTranslatef(b.getMidPoint().x,
+                     b.getMidPoint().y,
                      0);
         glCallList(b.getDisplayListModel());
         glPopMatrix();
     }
 
     glPushMatrix();
-    glTranslatef(getFocusButton().getMidPoint().getX(),
-                 getFocusButton().getMidPoint().getY(),
+    glTranslatef(getFocusButton().getMidPoint().x,
+                 getFocusButton().getMidPoint().y,
                  0);
     glCallList(getFocusButton().getDisplayListModel());
     glPopMatrix();
@@ -118,8 +118,8 @@ void Menu::drawBackgroundMenu()
     for (Background b : getBackgrounds())
     {
         glPushMatrix();
-        glTranslatef(b.getMidPoint().getX(),
-                     b.getMidPoint().getY(),
+        glTranslatef(b.getMidPoint().x,
+                     b.getMidPoint().y,
                      0);
         glCallList(b.getDisplayListModel());
         glPopMatrix();

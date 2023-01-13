@@ -30,8 +30,8 @@ Player::Player() : MovableEntity(), Ballistic()
 void Player::move()
 {   
     if(this->hp > -1){
-        this->setMidPoint(this->midPoint.getX() + (keys[2] - keys[3]) * (this->velocity.getX()),
-                          this->midPoint.getY() + (keys[0] - keys[1]) * (this->velocity.getY()));
+        this->setMidPoint(this->midPoint.x + (keys[2] - keys[3]) * (this->velocity.x),
+                          this->midPoint.y + (keys[0] - keys[1]) * (this->velocity.y));
         mantainInsideScreen(*this);
         generalHitBoxMovement();
     }
@@ -63,8 +63,8 @@ void Player::deathMove()
     this->resize -= 0.002;    
 
     glPushMatrix();
-        glTranslatef(this->getMidPoint().getX(),
-                    this->getMidPoint().getY(),
+        glTranslatef(this->getMidPoint().x,
+                     this->getMidPoint().y,
                     0);
         glRotatef(this->getAngle(), 0, 0, 1);
         glScalef(this->getResize(), this->getResize(), 1);
@@ -72,11 +72,11 @@ void Player::deathMove()
     glPopMatrix();   
 }
 
-Projectile Player::createProject(Projectile* auxP, double angle)
+Projectile Player::createProject(Projectile& auxP, const double& angle)
 {
-    auxP->setMidPoint(this->max.getX() * cos(this->angle +  angle) + this->midPoint.getX(),
-                      this->max.getY() * sin(this->angle +  angle) + this->midPoint.getY());
-    return *auxP;
+    auxP.setMidPoint(this->max.x * cos(this->angle +  angle) + this->midPoint.x,
+                     this->max.y * sin(this->angle +  angle) + this->midPoint.y);
+    return auxP;
 }
 
 std::vector<Projectile> Player::fire()
@@ -93,15 +93,15 @@ std::vector<Projectile> Player::fire()
             switch(numberOfShots)
             {
                 case 3:
-                    vec.push_back(createProject(&projectile1, M_PI/2));
+                    vec.push_back(createProject(projectile1, M_PI/2));
                     
                 case 2:
-                    vec.push_back(createProject(&projectile1, M_PI/4));
-                    vec.push_back(createProject(&projectile1, 3*M_PI/4));
+                    vec.push_back(createProject(projectile1, M_PI/4));
+                    vec.push_back(createProject(projectile1, 3*M_PI/4));
                     break;
 
                 case 1:
-                    vec.push_back(createProject(&projectile1, M_PI/2));
+                    vec.push_back(createProject(projectile1, M_PI/2));
                     break;
             }
             break;
@@ -119,10 +119,10 @@ std::vector<Projectile> Player::fire()
                     projectile1.setHp(4);
                     break;
             }
-            vec.push_back(createProject(&projectile1, M_PI/4));
+            vec.push_back(createProject(projectile1, M_PI/4));
 
-            projectile1.getVelocity().setX(-projectile1.getVelocity().getX());
-            vec.push_back(createProject(&projectile1, 3*M_PI/4));
+            projectile1.getVelocity().x = -projectile1.getVelocity().x;
+            vec.push_back(createProject(projectile1, 3*M_PI/4));
 
             break;
         
@@ -130,16 +130,16 @@ std::vector<Projectile> Player::fire()
             switch (numberOfShots)
             {
             case 1:
-                vec.push_back(createProject(&projectile1,   M_PI/2));
+                vec.push_back(createProject(projectile1,   M_PI/2));
                 break;
             case 2:
-                vec.push_back(createProject(&projectile1,   M_PI/4));
-                vec.push_back(createProject(&projectile1, 3*M_PI/4));
+                vec.push_back(createProject(projectile1,   M_PI/4));
+                vec.push_back(createProject(projectile1, 3*M_PI/4));
                 break;
             case 3:
-                vec.push_back(createProject(&projectile1, 0));
-                vec.push_back(createProject(&projectile1,   M_PI/2));
-                vec.push_back(createProject(&projectile1,   M_PI));
+                vec.push_back(createProject(projectile1, 0));
+                vec.push_back(createProject(projectile1,   M_PI/2));
+                vec.push_back(createProject(projectile1,   M_PI));
                 break;
             }
             break;
@@ -149,7 +149,7 @@ std::vector<Projectile> Player::fire()
     return vec;
 }
 
-void Player::upgradeManager(int upgradeType)
+void Player::upgradeManager(const int& upgradeType)
 {
     Projectile* u;
     switch (upgradeType)

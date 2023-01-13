@@ -48,8 +48,8 @@ void Score::draw()
             dig[i] = aux % 10;
 
             glPushMatrix();
-            glTranslatef(this->midPoint.getX() - tamDig * i,
-                         this->midPoint.getY(),
+            glTranslatef(this->midPoint.x - tamDig * i,
+                         this->midPoint.y,
                          0);
 
             switch (dig[i])
@@ -103,8 +103,8 @@ void Score::draw()
         for (int i = score; i > 0; i--)
         {
             glPushMatrix();
-                glTranslatef(this->midPoint.getX() + tamDig * i,
-                            this->midPoint.getY(),
+                glTranslatef(this->midPoint.x + tamDig * i,
+                            this->midPoint.y,
                             0);
                 glCallList(this->digitsScoreTextures[0]);
             glPopMatrix();
@@ -117,14 +117,14 @@ void Score::draw()
             glPushMatrix();
                 if (i == 0)
                 {
-                    glTranslatef(this->midPoint.getX(),
-                                this->midPoint.getY(),
+                    glTranslatef(this->midPoint.x,
+                                this->midPoint.y,
                                 0);
                 }
                 else
                 {
-                    glTranslatef(this->midPoint.getX() - this->score * 36,
-                                this->midPoint.getY(),
+                    glTranslatef(this->midPoint.x - this->score * 36,
+                                this->midPoint.y,
                                 0);
                     glScalef(this->resize - this->score, 1, 0);
                 }

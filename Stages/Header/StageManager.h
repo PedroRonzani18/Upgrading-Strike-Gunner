@@ -19,7 +19,7 @@ class StageManager {
 
         int endLevels; // sinaliza que todos os levels foram jogados
         int currentLevel;
-
+        void turnOffMusic();
     public:
         StageManager();
 

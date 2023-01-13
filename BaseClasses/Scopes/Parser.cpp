@@ -1,7 +1,5 @@
 #include "../Header/Parser.h"
 
-// Função que converte uma string para um array de char
-
 Parser::Parser()
 {
     numberOfEnemies.resize(0);
@@ -32,7 +30,7 @@ std::string Parser::arrayToString(const char* arr)
     return "";
 }
 
-char* Parser::stringToArray(std::string str)
+char* Parser::stringToArray(const std::string& str)
 {
     int t = str.length() + 1;
     char* arr = (char *)malloc(t * sizeof(char));
@@ -79,7 +77,6 @@ void Parser::completeDefaultValues(Parser* parser)
 Parser Parser::parseGeneral(const char* fileName)
 {
     Parser returnParser;
-
     std::fstream arquivo;
     std::string linha;
     std::string temp;
@@ -107,8 +104,6 @@ Parser Parser::parseGeneral(const char* fileName)
             }
 
             std::string titulo = linha.substr(0,linha.find(":"));
-
-            //std::cout << "Titulo: " << titulo << "  Valor: " << valor << std::endl;
 
                  if(titulo == "Quantidade de inimigos") returnParser.numberOfEnemies.push_back(valor);
             else if(titulo == "Type") returnParser.type.push_back(valor);

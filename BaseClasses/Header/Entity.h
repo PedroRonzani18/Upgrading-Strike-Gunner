@@ -20,37 +20,38 @@ class Entity{
     public:
         Entity();
 
-        int getDisplayListModel(){return this->displayListModel;}
+        int getDisplayListModel()const{return this->displayListModel;}
         void setDisplayListModel(const int& displayListModel){this->displayListModel = displayListModel;}
 
-        GLboolean getOnScreen(){return this->onScreen;}
+        GLboolean getOnScreen()const{return this->onScreen;}
         void setOnScreen(const GLboolean& onScreen){this->onScreen = onScreen;}
 
-        OrderedPair& getMidPoint() {return this->midPoint;}
+        OrderedPair& getMidPoint(){return this->midPoint;}
         void setMidPoint(const OrderedPair& midpoint){this->midPoint = midPoint;}
-        void setMidPoint(double x, double y){this->midPoint.setX(x); this->midPoint.setY(y);}
+        void setMidPoint(const double& x, const double& y){this->midPoint.x = (x); this->midPoint.y = (y);}
 
-        void setMidPoint(){this->midPoint.setX((this->max.getX() + this->min.getX())/2); this->midPoint.setY((this->max.getY() + this->min.getY())/2);}
+        void setMidPoint(){this->midPoint.x = ((this->max.x + this->min.x)/2); 
+                           this->midPoint.y = ((this->max.y + this->min.y)/2);}
 
         OrderedPair& getMax(){return this->max;}
         void setMax(const OrderedPair& max){this->max = max;}
-        void setMax(double x, double y){this->max.setX(x); this->max.setY(y);}
+        void setMax(const double& x, const double& y){this->max.x = (x); this->max.y = (y);}
 
         OrderedPair& getMin(){return this->min;}
         void setMin(const OrderedPair& min){this->min = min;}
-        void setMin(double x, double y){this->min.setX(x); this->min.setY(y);}
+        void setMin(const double& x, const double& y){this->min.x = (x); this->min.y = (y);}
         
-        std::vector<OrderedPair> getHitbox(){return this->hitbox;}
+        std::vector<OrderedPair> getHitbox()const{return this->hitbox;}
         void setHitbox();
-        std::vector<OrderedPair> getAlteredHitbox(){return this->alteredHitbox;}
-        void setAlteredHitbox(const int& i, const int& x, const int& y ){this->alteredHitbox[i].setX(x); this->alteredHitbox[i].setY(y);}
+        std::vector<OrderedPair> getAlteredHitbox()const{return this->alteredHitbox;}
+        void setAlteredHitbox(const int& i, const int& x, const int& y ){this->alteredHitbox[i].x = (x); this->alteredHitbox[i].y = (y);}
         
         double getResize(){return this->resize;}
         void setResize(const double& resize)
         {
             this->resize = resize;
-            this->setMax(this->getMax().getX() * resize, this->getMax().getY() * resize);
-            this->setMin(this->getMin().getX() * resize, this->getMin().getY() * resize);
+            this->setMax(this->getMax().x * resize, this->getMax().y * resize);
+            this->setMin(this->getMin().x * resize, this->getMin().y * resize);
         }
 };
 

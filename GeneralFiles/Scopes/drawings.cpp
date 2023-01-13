@@ -150,8 +150,8 @@ void initializeTextures()
 void drawModel(MovableEntity *m)
 {
     glPushMatrix();
-        glTranslatef(m->getMidPoint().getX(),
-                    m->getMidPoint().getY(),
+        glTranslatef(m->getMidPoint().x,
+                    m->getMidPoint().y,
                     0);
         glRotatef(m->getAngle(), 0, 0, 1);
         glScalef(m->getResize(), m->getResize(), 1);
@@ -162,8 +162,8 @@ void drawModel(MovableEntity *m)
 void drawModel(MovableEntity *m, const int& dx, const int& dy)
 {
     glPushMatrix();
-        glTranslatef(m->getMidPoint().getX(),
-                    m->getMidPoint().getY(),
+        glTranslatef(m->getMidPoint().x,
+                    m->getMidPoint().y,
                     0);
         glRotatef(m->getAngle(), 0, 0, 1);
         glTranslatef(dx, dy, 0);
@@ -181,8 +181,8 @@ void drawHitbox(MovableEntity* m)
     for (int i = 0, j = 1; i < 4; i++, j = (i + 1) % 4)
     {
         glBegin(GL_LINES);
-            glVertex2f(m->getAlteredHitbox()[i].getX(), m->getAlteredHitbox()[i].getY());
-            glVertex2f(m->getAlteredHitbox()[j].getX(), m->getAlteredHitbox()[j].getY());
+            glVertex2f(m->getAlteredHitbox()[i].x, m->getAlteredHitbox()[i].y);
+            glVertex2f(m->getAlteredHitbox()[j].x, m->getAlteredHitbox()[j].y);
         glEnd();
     }
 }

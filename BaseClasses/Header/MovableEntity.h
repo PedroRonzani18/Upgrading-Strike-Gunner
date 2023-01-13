@@ -19,29 +19,29 @@ class MovableEntity: public Entity
 
         MovableEntity();
 
-        OrderedPair& getVelocity(){return velocity;}
+        OrderedPair& getVelocity(){return this->velocity;}
         void setVelocity(const OrderedPair& velocity){this->velocity = velocity;}
-        void setVelocity(double x, double y){this->velocity.setX(x); this->velocity.setY(y);}
+        void setVelocity(const double& x, const double& y){this->velocity.x = x; this->velocity.y = y;}
 
-        double getAngle(){return angle;}
+        double getAngle()const {return this->angle;}
         void setAngle(const double& angle){this->angle = angle;}
 
-        double getAngularSpeed(){return angularSpeed;}
+        double getAngularSpeed()const{return angularSpeed;}
         void setAngularSpeed(const double& angularSpeed){this->angularSpeed = angularSpeed;}
 
-        double getHp(){return hp;}
+        double getHp()const{return hp;}
         void setHp(const double& hp){this->hp = hp;}
 
-        int getType(){return type;}
+        int getType()const{return type;}
         void setType(const int& type){this->type = type;}
+
+        int getTypeMove()const{return this->typeMove;}
+        void setTypeMove(const int& typeMove){this->typeMove = typeMove;}
 
         void generalHitBoxMovement();
 
         virtual void move() = 0; // movimentação padrão da entidade
         virtual void scaleMove(const double& scale) = 0; // movimentação usando escala de uma entidade
-
-        int getTypeMove(){return this->typeMove;}
-        void setTypeMove(const int& typeMove){this->typeMove = typeMove;}
 };
 
 #endif

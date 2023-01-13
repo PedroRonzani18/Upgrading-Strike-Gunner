@@ -10,26 +10,36 @@ Level::Level(const int &level)
     //25, 5, 6, 18, 23, 4, 8, 16, 20, 3, 24, 21, 0
     //26, 11, 18, 13, 14, 17, 19, 19, 19, 15, 22, 12, 99, 100, 27, 49, 50, 0
 
-    for(auto number: Parser::parsePath(Parser::stringToArray(fullPath)))
-        auxWaves.push_back(number);
+    for(auto path: Parser::parsePath(Parser::stringToArray(fullPath)))
+        auxWaves.push_back(path);
 
     initBackgrounds(level);
 
     player.setMidPoint(0, -80);
     this->addWaves(auxWaves);
     this->scorePontis = Score(0);
-    startMusic(level);
+    addMusic(level);
+    startMusic();
 }
 
-void Level::startMusic(int level)
+void Level::addMusic(int level)
 {
-    Mix_FadeOutMusic(1);
-    std::string fullPath = "Assets/Scripts/Musics/level" + std::to_string(level+1) + "Musics.txt";
+    std::string fullPath = "Assets/Scripts/Audio/Musics/level" + std::to_string(level+1) + "Musics.txt";
 
     for(const char* path: Parser::parsePath(Parser::stringToArray(fullPath)))
         musicalizer->addMusic(Mix_LoadMUS(path));
 
-    // Inicia a reproducao da musica
+    fullPath = "Assets/Scripts/Audio/SoundEffects/level" + std::to_string(level+1) + "SoundEffects.txt";
+
+    //for(const char* path: Parser::parsePath(Parser::stringToArray(fullPath)))
+    //    musicalizer->addSoundEffect(Mix_load(path));
+}
+
+// Inicia a reproducao da musica
+void Level::startMusic()
+{
+    Mix_FadeOutMusic(1);
+
     if(musicalizer->getMusics().size() > 0){
         if(!Mix_PausedMusic())
             Mix_PlayMusic(musicalizer->getFinalMusic(),-1);
@@ -69,7 +79,6 @@ void Level::callWaves()
     {
         bossTime = 0;
         for (Enemy enemy : waveTemplateGeneral(waves.front())) addEnemy(enemy);
-        
         waves.erase(waves.begin());
     }
 }
@@ -86,8 +95,8 @@ Enemy* Level::smallestDistanceEnemyPlayer(MovableEntity *m1)
     for (size_t i = 0; i < enemies.size(); i++)
     {
         if(enemies[i].getType() != 10 && enemies[i].getType() != 7){
-            auxD = sqrt(pow((m1->getMidPoint().getX() - enemies[i].getMidPoint().getX()), 2) +
-                        pow((m1->getMidPoint().getY() - enemies[i].getMidPoint().getY()), 2));
+            auxD = sqrt(pow((m1->getMidPoint().x - enemies[i].getMidPoint().x), 2) +
+                        pow((m1->getMidPoint().y - enemies[i].getMidPoint().y), 2));
 
             if (auxD < smallesDist && &enemies[i] != nullptr)
             {
@@ -111,24 +120,20 @@ int Level::stageKeyboard()
     if (player.getHp() < 0)
     {
         if(player.getResize() == 0.5){
+            projectiles.clear();
             enemies.clear();
             waves.clear();
-            waves.push_back(0);
+            waves.push_back("Assets/Scripts/Waves/TitleWaves/waveGameOver.txt");
         }
 
         player.deathMove();
 
         if (player.getResize() <= 0) // significa que player morreu e desapareceu da tela
-        {
             return 0; // volta para o menu
-        }
     }
-
-    if (waves.size() == 0 && player.getHp() >= 0) // se acabaram as waves e o player está vivo, muda de level
-    {
+    else if (waves.empty()) // se acabaram as waves e o player está vivo, muda de level
         return 2;
-    }
-
+    
     return -1; // chama o level
 }
 
@@ -164,8 +169,8 @@ void Level::drawAndMove()
     {
         if(bossTime)
         {
-            enemies[i].setMidPoint(boss.getMidPoint().getX() + enemies[i].getVelocity().getX(), 
-                                   boss.getMidPoint().getY() + enemies[i].getVelocity().getY());
+            enemies[i].setMidPoint(boss.getMidPoint().x + enemies[i].getVelocity().x, 
+                                   boss.getMidPoint().y + enemies[i].getVelocity().y);
             hp += enemies[i].getHp();
         }
         
@@ -210,7 +215,7 @@ void Level::timeCounter()
     {
         if (enemies[i].getFireRatePeriod() >= 0)
             enemies[i].setFireRatePeriod(enemies[i].getFireRatePeriod() - 1);
-        enemies[i].setFollowPoint(player.getMidPoint().getX(), player.getMidPoint().getY());
+        enemies[i].setFollowPoint(player.getMidPoint().x, player.getMidPoint().y);
     }
 
     for (size_t i = 0; i < projectiles.size(); i++)
@@ -251,7 +256,7 @@ void Level::colider() // proibido.
                     if (player.getImortality() <= 0 && player.getHp() >= 0)
                     {
                         projectiles[i].setHp(0);
-                        /*
+                        
                         if(player.getHp() > 0)
                         {
                             player.setMidPoint(0, -80);
@@ -259,7 +264,7 @@ void Level::colider() // proibido.
                         
                         player.setHp(player.getHp() - projectiles[i].getDamage());
                         player.damage();
-                        */
+                        
                     }
                 }
             }
@@ -270,14 +275,14 @@ void Level::colider() // proibido.
             if (player.getImortality() <= 0 && player.getHp() >= 0) // quando ele nao ta imortal
             {
                 enemies[j].setHp(enemies[j].getHp() - player.getCurrentProjectile().getDamage() * 7);
-                /*
+                
                 if(player.getHp() > 0)
                 {
                     player.setMidPoint(0, -80);
                 }
                 player.setHp(player.getHp() - 1);
                 player.damage();
-                */
+                
             }
         }
     }
@@ -307,8 +312,8 @@ void Level::remover()
 
             if (r <= enemies[i].getDropPercentage())
             {
-                Colectible c(enemies[i].getMidPoint().getX(),
-                             enemies[i].getMidPoint().getY());
+                Colectible c(enemies[i].getMidPoint().x,
+                             enemies[i].getMidPoint().y);
                 mantainInsideScreen(c);
                 colectibles.push_back(c);
             }

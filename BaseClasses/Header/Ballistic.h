@@ -23,16 +23,16 @@ class Ballistic{
         Projectile& getCurrentProjectile(){return this->currentProjectile;}
         void setCurrentProjectile(const Projectile& currentProjectile){this->currentProjectile = currentProjectile;}
 
-        int getNumberOfShots(){return this->numberOfShots;}
+        int getNumberOfShots()const{return this->numberOfShots;}
         void setNumberOfShots(const int& numberOfShots){this->numberOfShots = numberOfShots;}
 
-        int getTypeTiroManager(){return this->typeTiroManager;}
-        void setTypeTiroManager(int typeTiroManager){this->typeTiroManager = typeTiroManager;}
+        int getTypeTiroManager()const{return this->typeTiroManager;}
+        void setTypeTiroManager(const int& typeTiroManager){this->typeTiroManager = typeTiroManager;}
 
-        int getFireRatePeriod(){return this->fireRatePeriod;}
+        int getFireRatePeriod()const{return this->fireRatePeriod;}
         void setFireRatePeriod(const int& fireRatePeriod){this->fireRatePeriod = fireRatePeriod;}
 
-        double getAlteredFireRate(){return alteredFireRate;}
+        double getAlteredFireRate()const{return alteredFireRate;}
         void setAlteredFireRate(const double& alteredFireRate){this->alteredFireRate = alteredFireRate;}
         
         virtual std::vector<Projectile> fire() = 0;

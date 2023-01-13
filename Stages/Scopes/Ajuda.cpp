@@ -26,8 +26,8 @@ void Ajuda::drawBackgroundAjuda()
     for(Background b : getBackgrounds())
     {
         glPushMatrix();
-            glTranslatef(b.getMidPoint().getX(),
-                         b.getMidPoint().getY(),
+            glTranslatef(b.getMidPoint().x,
+                         b.getMidPoint().y,
                          0);
             glCallList(b.getDisplayListModel());
         glPopMatrix();

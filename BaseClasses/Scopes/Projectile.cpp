@@ -146,60 +146,60 @@ Projectile::Projectile(const int& type) : MovableEntity()
 
 void Projectile::straightMove()
 {
-    this->midPoint.setY(this->midPoint.getY() + this->velocity.getY());
+    this->midPoint.y = (this->midPoint.y + this->velocity.y);
 }
 
 void Projectile::bouncyMove()
 {
-    this->midPoint.setY(this->midPoint.getY() + this->velocity.getY());
-    this->midPoint.setX(this->midPoint.getX() + this->velocity.getX());
+    this->midPoint.y = (this->midPoint.y + this->velocity.y);
+    this->midPoint.x = (this->midPoint.x + this->velocity.x);
 
     int i = mantainInsideScreen(*this);
 
     if(i == 1){
-        this->velocity.setY(-this->velocity.getY());
+        this->velocity.y = (-this->velocity.y);
         this->hp--;
     }else if(i == 2){
-        this->velocity.setX(-this->velocity.getX());
+        this->velocity.x = (-this->velocity.x);
         this->hp--;
     }
 }
 
 void Projectile::folllowMove()
 {
-    double angle = atan2(followedEnemy->getMidPoint().getY() - this->midPoint.getY(),
-                         followedEnemy->getMidPoint().getX() - this->midPoint.getX());
+    double angle = atan2(followedEnemy->getMidPoint().y - this->midPoint.y,
+                         followedEnemy->getMidPoint().x - this->midPoint.x);
 
     this->angle = radianoParaGraus(angle)-90;
 
-    this->midPoint.setX(this->midPoint.getX() + cos(angle) * this->velocity.getX());
-    this->midPoint.setY(this->midPoint.getY() + sin(angle) * this->velocity.getY());
+    this->midPoint.x = (this->midPoint.x + cos(angle) * this->velocity.x);
+    this->midPoint.y = (this->midPoint.y + sin(angle) * this->velocity.y);
 }
 
 void Projectile::followPlayerMove()
 {
     if(continueMove < 70)
     {
-        double angle = atan2(followedEnemy->getMidPoint().getY() - this->midPoint.getY(),
-                         followedEnemy->getMidPoint().getX() - this->midPoint.getX());
+        double angle = atan2(followedEnemy->getMidPoint().y - this->midPoint.y,
+                         followedEnemy->getMidPoint().x - this->midPoint.x);
 
         this->angle = radianoParaGraus(angle)-90;
 
-        this->midPoint.setX(this->midPoint.getX() + cos(angle) * this->velocity.getX());
-        this->midPoint.setY(this->midPoint.getY() + sin(angle) * this->velocity.getY());
+        this->midPoint.x = (this->midPoint.x + cos(angle) * this->velocity.x);
+        this->midPoint.y = (this->midPoint.y + sin(angle) * this->velocity.y);
         continueMove++;
     }
     else
     {
-        this->midPoint.setX(this->midPoint.getX() + cos(grausParaRadianos(this->angle) + M_PI/2) * this->velocity.getX() * 1.7);
-        this->midPoint.setY(this->midPoint.getY() + sin(grausParaRadianos(this->angle) + M_PI/2) * this->velocity.getY() * 1.7);
+        this->midPoint.x = (this->midPoint.x + cos(grausParaRadianos(this->angle) + M_PI/2) * this->velocity.x * 1.7);
+        this->midPoint.y = (this->midPoint.y + sin(grausParaRadianos(this->angle) + M_PI/2) * this->velocity.y * 1.7);
     }
 }
 
 void Projectile::angularShooting()
 {
-    this->midPoint.setX(this->midPoint.getX() + cos(grausParaRadianos(this->angle) + M_PI/2) * this->velocity.getX());
-    this->midPoint.setY(this->midPoint.getY() + sin(grausParaRadianos(this->angle) + M_PI/2) * this->velocity.getY());
+    this->midPoint.x = (this->midPoint.x + cos(grausParaRadianos(this->angle) + M_PI/2) * this->velocity.x);
+    this->midPoint.y = (this->midPoint.y + sin(grausParaRadianos(this->angle) + M_PI/2) * this->velocity.y);
 }
 
 void Projectile::move() //movimentação geral do projectile
@@ -227,7 +227,7 @@ void Projectile::move() //movimentação geral do projectile
         break;
 
     case 5:
-        this->midPoint.setY(this->midPoint.getY() - this->velocity.getY());
+        this->midPoint.y = (this->midPoint.y - this->velocity.y);
         break;
     }
     verifyVisibility(*this);

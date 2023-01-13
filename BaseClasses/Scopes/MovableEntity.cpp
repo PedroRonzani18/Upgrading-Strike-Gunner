@@ -13,15 +13,15 @@ void MovableEntity::generalHitBoxMovement()
         double auxAngle = grausParaRadianos(this->getAngle());
         
         // Usadas no calculo dos valores de x' e y' ao rotacionar a entidade
-        double x = this->getHitbox()[i].getX();
-        double y = this->getHitbox()[i].getY();
+        double x = this->getHitbox()[i].x;
+        double y = this->getHitbox()[i].y;
 
         // Altera o valor das coordenadas x e y da hitbox de acordo com as rotações
         this->setAlteredHitbox(i,x * cos(auxAngle) - y * sin(auxAngle),
                                  x * sin(auxAngle) + y * cos(auxAngle));
 
         // Altera o valor das coordenadas x e y da hitbox de acordo com as translações
-        this->setAlteredHitbox(i, this->getAlteredHitbox()[i].getX() + this->midPoint.getX(),
-                                  this->getAlteredHitbox()[i].getY() + this->midPoint.getY());
+        this->setAlteredHitbox(i, this->getAlteredHitbox()[i].x + this->midPoint.x,
+                                  this->getAlteredHitbox()[i].y + this->midPoint.y);
     }
 }  

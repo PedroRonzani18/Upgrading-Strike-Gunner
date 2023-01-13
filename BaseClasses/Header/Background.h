@@ -13,7 +13,7 @@ class Background : public MovableEntity
     public:
         Background();
     
-        GLuint getId(){return this->id;}
+        GLuint getId()const{return this->id;}
         void setId(const GLuint& id){this->id = id;}
 
         void move() override;

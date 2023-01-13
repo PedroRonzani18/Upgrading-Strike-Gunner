@@ -17,6 +17,11 @@ StageManager::StageManager()
     Mix_OpenAudio(22050,MIX_DEFAULT_FORMAT,2,4096); // Cria um canal de música
 }
 
+void StageManager::turnOffMusic()
+{
+    Mix_FadeOutMusic(1);
+}
+
 void StageManager::initLevel()
 {
     if(this->currentLevel == endLevels){
@@ -75,6 +80,7 @@ void StageManager::keyboardOfStage()
         case 0:
             this->currentStage = menu;
             this->currentLevel = 0;
+            turnOffMusic();
             break;
         case 1:
             this->currentStage = ajuda;

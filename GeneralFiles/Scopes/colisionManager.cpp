@@ -3,10 +3,10 @@
 
 int colided(Entity& e1, Entity& e2)
 {
-         if(e1.getMidPoint().getY() + e1.getMax().getY() < e2.getMidPoint().getY() + e2.getMin().getY()) return 0;
-    else if(e1.getMidPoint().getY() + e1.getMin().getY() > e2.getMidPoint().getY() + e2.getMax().getY()) return 0;
-    else if(e1.getMidPoint().getX() + e1.getMax().getX() < e2.getMidPoint().getX() + e2.getMin().getX()) return 0;
-    else if(e1.getMidPoint().getX() + e1.getMin().getX() > e2.getMidPoint().getX() + e2.getMax().getX()) return 0;
+         if(e1.getMidPoint().y + e1.getMax().y < e2.getMidPoint().y + e2.getMin().y) return 0;
+    else if(e1.getMidPoint().y + e1.getMin().y > e2.getMidPoint().y + e2.getMax().y) return 0;
+    else if(e1.getMidPoint().x + e1.getMax().x < e2.getMidPoint().x + e2.getMin().x) return 0;
+    else if(e1.getMidPoint().x + e1.getMin().x > e2.getMidPoint().x + e2.getMax().x) return 0;
     
     return 1;
 }
@@ -18,23 +18,23 @@ int mantainInsideScreen(Entity& e)
     // fazendo que ele nunca saia da caixa de visualização.
     int aux = 0; 
 
-    if(e.getMidPoint().getY() + e.getMax().getY() > top){
-        e.getMidPoint().setY(top - e.getMax().getY());
+    if(e.getMidPoint().y + e.getMax().y > top){
+        e.getMidPoint().y = (top - e.getMax().y);
         aux = 1;
     }
 
-    if(e.getMidPoint().getY() + e.getMin().getY() < bottom){
-        e.getMidPoint().setY(bottom - e.getMin().getY());
+    if(e.getMidPoint().y + e.getMin().y < bottom){
+        e.getMidPoint().y = (bottom - e.getMin().y);
         aux = 1;
     }
 
-    if(e.getMidPoint().getX() + e.getMax().getX() > direita){
-        e.getMidPoint().setX(direita - e.getMax().getX());
+    if(e.getMidPoint().x + e.getMax().x > direita){
+        e.getMidPoint().x = (direita - e.getMax().x);
         aux = 2;
     }
 
-    if(e.getMidPoint().getX() + e.getMin().getX() < esquerda){
-        e.getMidPoint().setX(esquerda - e.getMin().getX());
+    if(e.getMidPoint().x + e.getMin().x < esquerda){
+        e.getMidPoint().x = (esquerda - e.getMin().x);
         aux = 2;
     }
 
@@ -44,10 +44,10 @@ int mantainInsideScreen(Entity& e)
 
 void verifyVisibility(Entity& e)
 {
-    if(e.getMidPoint().getX() + e.getMin().getX() > direita ||
-       e.getMidPoint().getX() + e.getMax().getX() < esquerda  ||
-       e.getMidPoint().getY() + e.getMin().getY() > top   ||
-       e.getMidPoint().getY() + e.getMax().getY() < bottom)
+    if(e.getMidPoint().x + e.getMin().x > direita ||
+       e.getMidPoint().x + e.getMax().x < esquerda  ||
+       e.getMidPoint().y + e.getMin().y > top   ||
+       e.getMidPoint().y + e.getMax().y < bottom)
        e.setOnScreen(GL_FALSE);
     else
         e.setOnScreen(GL_TRUE);

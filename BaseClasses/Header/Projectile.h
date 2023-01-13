@@ -20,16 +20,16 @@ class Projectile: public MovableEntity{
 
         Projectile(const int& type);
 
-        double getDamage(){return damage;}
+        double getDamage()const{return damage;}
         void setDamage(const double& damage){this->damage = damage;}
 
-        double getDefaultFireRate(){return defaultFireRate;}
+        double getDefaultFireRate()const{return defaultFireRate;}
         void setDefaultFireRate(const double& defaultFireRate){this->defaultFireRate = defaultFireRate;}
 
-        MovableEntity* getFollowedEnemy(){return this->followedEnemy;}
+        MovableEntity* getFollowedEnemy()const{return this->followedEnemy;}
         void setFollowedEnemy(MovableEntity* followedEnemy){this->followedEnemy = followedEnemy;}
 
-        int getOwner(){return owner;}
+        int getOwner()const{return owner;}
         void setOwner(const int& owner){this->owner = owner;}
 
         void move() override;

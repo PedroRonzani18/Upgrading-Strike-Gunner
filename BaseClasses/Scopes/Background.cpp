@@ -4,7 +4,7 @@ Background::Background() : MovableEntity()
 {
     this->angle = 0;
     this->angularSpeed = 0;
-    this->midPoint.setX(0);
+    this->midPoint.x = 0;
     this->setMax( 90, 100);
     this->setMin(-90,-100);
     this->setResize(1);
@@ -15,8 +15,8 @@ Background::Background() : MovableEntity()
 
 void Background::move()
 {
-    midPoint.setY(midPoint.getY() - velocity.getY());
+    midPoint.y -= velocity.y;
 
-    if(this->midPoint.getY() <= -200)
-        this->midPoint.setY(200);
+    if(this->midPoint.y <= -200)
+        this->midPoint.y = 200;
 }

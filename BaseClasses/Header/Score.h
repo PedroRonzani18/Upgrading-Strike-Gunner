@@ -16,7 +16,7 @@ class Score: public Entity
 
         Score(const int& scoreType);
 
-        double getScore(){return this->score;}
+        double getScore()const{return this->score;}
         void setScore(const double& score){score <= 999999999 ? this->score = score : this->score = 999999999;}
 
         void draw();

@@ -7,12 +7,12 @@ Entity::Entity()
 }
 
 void Entity::setHitbox(){
-        this->hitbox[0].setX(this->max.getX());
-        this->hitbox[0].setY(this->max.getY());
-        this->hitbox[1].setX(this->min.getX());
-        this->hitbox[1].setY(this->max.getY());
-        this->hitbox[2].setX(this->min.getX()); 
-        this->hitbox[2].setY(this->min.getY());
-        this->hitbox[3].setX(this->max.getX());
-        this->hitbox[3].setY(this->min.getY());
+        this->hitbox[0].x = (this->max.x);
+        this->hitbox[0].y = (this->max.y);
+        this->hitbox[1].x = (this->min.x);
+        this->hitbox[1].y = (this->max.y);
+        this->hitbox[2].x = (this->min.x); 
+        this->hitbox[2].y = (this->min.y);
+        this->hitbox[3].x = (this->max.x);
+        this->hitbox[3].y = (this->min.y);
 }

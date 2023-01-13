@@ -21,35 +21,35 @@ class Enemy: public MovableEntity, public Ballistic{
     public:
         Enemy(){}
 
-        Enemy(int type);
-        Enemy(int type, int typeMove, int numberOfShots, int typeTiroManager, double vx, double vy);
+        Enemy(const int& type);
+        Enemy(const int& type, const int& typeMove, const int& numberOfShots, const int& typeTiroManager, const double& vx, const double& vy);
 
-        Projectile createProject(Projectile* auxP, double angle);
+        Projectile createProject(Projectile* auxP, const double& angle);
 
-        int getKillValue(){return this->killValue;}
+        int getKillValue()const{return this->killValue;}
         void setKillValue(const int& killValue){this->killValue = killValue;}
 
-        int getDropPercentage(){return this->dropPercentage;}
+        int getDropPercentage()const{return this->dropPercentage;}
         void setDropPercentage(const int& dropPercentage){this->dropPercentage = dropPercentage;}
 
-        GLboolean getOnscreenTestable(){return this->onscreenTestable;}
+        GLboolean getOnscreenTestable()const{return this->onscreenTestable;}
         void setOnscreenTestable(const GLboolean& onscreenTestable){this->onscreenTestable = onscreenTestable;}
 
-        OrderedPair getFollowPoint(){return this->followPoint;}
-        void setFollowPoint(const double& x, const double& y){this->followPoint.setX(x); this->followPoint.setY(y);}
+        OrderedPair getFollowPoint()const{return this->followPoint;}
+        void setFollowPoint(const double& x, const double& y){this->followPoint.x = x; this->followPoint.y = y;}
         void setFollowPoint(const OrderedPair& followPoint){this->followPoint = followPoint;}
 
-        int getContinueMove(){return this->continueMove;}
+        int getContinueMove()const{return this->continueMove;}
 
-        void aim(double auxAngle);
-        void elipsoidMove(double a, double b, double yo);
-        void elipsoidMoveNoEntrance(double a, double b, double yo);
+        void aim(const double& auxAngle);
+        void elipsoidMove(const double& a, const double& b, const double& yo);
+        void elipsoidMoveNoEntrance(const double& a, const double& b, const double& yo);
 
-        void parabolicMoveTemplateFx(double a, double b, double c);
-        void parabolicMoveTemplateFy(double a, double b, double c);
+        void parabolicMoveTemplateFx(const double& a, const double& b, const double& c);
+        void parabolicMoveTemplateFy(const double& a, const double& b, const double& c);
 
-        void senoidMoveTemplateFx(double a, double b, double c, double d);
-        void senoidMoveTemplateFy(double a, double b, double c, double d);
+        void senoidMoveTemplateFx(const double& a, const double& b, const double& c, const double& d);
+        void senoidMoveTemplateFy(const double& a, const double& b, const double& c, const double& d);
 
         void bateVolta(const int& posY);
 

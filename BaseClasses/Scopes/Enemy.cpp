@@ -4,7 +4,8 @@
 #define radianoParaGraus(radianos) (radianos * (180.0 / M_PI))
 #define grausParaRadianos(graus) ((graus * M_PI) / 180.0)
 
-Enemy::Enemy(int type, int typeMove, int numberOfShots, int typeTiroManager, double vx, double vy): Enemy(type) // função com template de enemy
+Enemy::Enemy(const int& type, const int& typeMove, const int& numberOfShots, const int& typeTiroManager, const double& vx, const double& vy): 
+    Enemy(type)
 {
     setTypeMove(typeMove);
     setNumberOfShots(numberOfShots);
@@ -12,7 +13,7 @@ Enemy::Enemy(int type, int typeMove, int numberOfShots, int typeTiroManager, dou
     setVelocity(vx, vy);
 }
 
-Enemy::Enemy(int type) : MovableEntity()
+Enemy::Enemy(const int& type) : MovableEntity()
 {
     srand(time(0));
     this->type = type;
@@ -295,35 +296,35 @@ Enemy::Enemy(int type) : MovableEntity()
     this->setMidPoint();
 }
 
-Projectile Enemy::createProject(Projectile *auxP, double angle)
+Projectile Enemy::createProject(Projectile *auxP, const double& angle)
 {
-    auxP->setMidPoint(this->max.getX() * cos(grausParaRadianos(this->angle) + angle) + this->midPoint.getX(),
-                      this->max.getY() * sin(grausParaRadianos(this->angle) + angle) + this->midPoint.getY());
+    auxP->setMidPoint(this->max.x * cos(grausParaRadianos(this->angle) + angle) + this->midPoint.x,
+                      this->max.y * sin(grausParaRadianos(this->angle) + angle) + this->midPoint.y);
     return *auxP;
 }
 
-void Enemy::parabolicMoveTemplateFy(double a, double b, double c)
+void Enemy::parabolicMoveTemplateFy(const double& a, const double& b, const double& c)
 {
-    this->midPoint.setY(this->midPoint.getY() + this->velocity.getY());
-    this->midPoint.setX(a * pow(this->midPoint.getY(), 2) + b * this->midPoint.getY() + c);
+    this->midPoint.y = (this->midPoint.y + this->velocity.y);
+    this->midPoint.x = (a * pow(this->midPoint.y, 2) + b * this->midPoint.y + c);
 }
 
-void Enemy::parabolicMoveTemplateFx(double a, double b, double c)
+void Enemy::parabolicMoveTemplateFx(const double& a, const double& b, const double& c)
 {
-    this->midPoint.setX(this->midPoint.getX() + this->velocity.getX());
-    this->midPoint.setY(a * pow(this->midPoint.getX(), 2) + b * this->midPoint.getX() + c);
+    this->midPoint.x = (this->midPoint.x + this->velocity.x);
+    this->midPoint.y = (a * pow(this->midPoint.x, 2) + b * this->midPoint.x + c);
 }
 
-void Enemy::senoidMoveTemplateFy(double a, double b, double c, double d)
+void Enemy::senoidMoveTemplateFy(const double& a, const double& b, const double& c, const double& d)
 {
-    this->midPoint.setY(this->midPoint.getY() + this->velocity.getY());
-    this->midPoint.setX(a + b * sin(c * this->midPoint.getY() + d));
+    this->midPoint.y = (this->midPoint.y + this->velocity.y);
+    this->midPoint.x = (a + b * sin(c * this->midPoint.y + d));
 }
 
-void Enemy::senoidMoveTemplateFx(double a, double b, double c, double d)
+void Enemy::senoidMoveTemplateFx(const double& a, const double& b, const double& c, const double& d)
 {
-    this->midPoint.setX(this->midPoint.getX() + this->velocity.getX());
-    this->midPoint.setY(a + b * sin(c * this->midPoint.getX() + d));
+    this->midPoint.x = (this->midPoint.x + this->velocity.x);
+    this->midPoint.y = (a + b * sin(c * this->midPoint.x + d));
 }
 
 void Enemy::kamikazeMove()
@@ -332,106 +333,106 @@ void Enemy::kamikazeMove()
     {
         aim(90);
 
-        this->midPoint.setX(this->midPoint.getX() + cos(grausParaRadianos(this->angle) + M_PI / 2) * this->velocity.getX());
-        this->midPoint.setY(this->midPoint.getY() + sin(grausParaRadianos(this->angle) + M_PI / 2) * this->velocity.getY());
+        this->midPoint.x = (this->midPoint.x + cos(grausParaRadianos(this->angle) + M_PI / 2) * this->velocity.x);
+        this->midPoint.y = (this->midPoint.y + sin(grausParaRadianos(this->angle) + M_PI / 2) * this->velocity.y);
 
         this->continueMove++;
     }
     else
     {
-        this->midPoint.setX(this->midPoint.getX() + cos(grausParaRadianos(this->angle) + M_PI / 2) * this->velocity.getX() * 3);
-        this->midPoint.setY(this->midPoint.getY() + sin(grausParaRadianos(this->angle) + M_PI / 2) * this->velocity.getY() * 3);
+        this->midPoint.x = (this->midPoint.x + cos(grausParaRadianos(this->angle) + M_PI / 2) * this->velocity.x * 3);
+        this->midPoint.y = (this->midPoint.y + sin(grausParaRadianos(this->angle) + M_PI / 2) * this->velocity.y * 3);
     }
 }
 
-void Enemy::aim(double auxAngle) // mira  a frente do inimigo na direção do player
+void Enemy::aim(const double& auxAngle) // mira  a frente do inimigo na direção do player
 {
-    double angle = atan2(this->followPoint.getY() - this->midPoint.getY(),
-                         this->followPoint.getX() - this->midPoint.getX());
+    const double& angle = atan2(this->followPoint.y - this->midPoint.y,
+                         this->followPoint.x - this->midPoint.x);
 
     this->angle = radianoParaGraus(angle) - auxAngle;
 }
 
-void Enemy::elipsoidMoveNoEntrance(double a, double b, double yo)
+void Enemy::elipsoidMoveNoEntrance(const double& a, const double& b, const double& yo)
 {
-    if ((-a <= this->midPoint.getX()) && (this->midPoint.getX() <= a))
+    if ((-a <= this->midPoint.x) && (this->midPoint.x <= a))
     {
-        if (this->midPoint.getY() > yo)
-            this->midPoint.setX(this->midPoint.getX() - this->velocity.getX());
+        if (this->midPoint.y > yo)
+            this->midPoint.x = (this->midPoint.x - this->velocity.x);
 
-        if (this->midPoint.getY() < yo)
-            this->midPoint.setX(this->midPoint.getX() + this->velocity.getX());
+        if (this->midPoint.y < yo)
+            this->midPoint.x = (this->midPoint.x + this->velocity.x);
 
-        if (this->midPoint.getY() == yo)
+        if (this->midPoint.y == yo)
         {
-            if (this->midPoint.getX() < 0)
+            if (this->midPoint.x < 0)
             {
-                this->midPoint.setY(this->midPoint.getY() - this->velocity.getY());
-                this->midPoint.setX(this->midPoint.getX() + this->velocity.getX());
+                this->midPoint.y = (this->midPoint.y - this->velocity.y);
+                this->midPoint.x = (this->midPoint.x + this->velocity.x);
             }
-            if (this->midPoint.getX() > 0)
+            if (this->midPoint.x > 0)
             {
-                this->midPoint.setY(this->midPoint.getY() + this->velocity.getY());
-                this->midPoint.setX(this->midPoint.getX() - this->velocity.getX());
+                this->midPoint.y = (this->midPoint.y + this->velocity.y);
+                this->midPoint.x = (this->midPoint.x - this->velocity.x);
             }
         }
 
-        if (this->midPoint.getY() > yo)
-            this->midPoint.setY((sqrt(pow(b, 2) - pow(b, 2) * pow(this->midPoint.getX(), 2) / pow(a, 2))) + yo);
-        if (this->midPoint.getY() < yo)
-            // this->midPoint.setY(-(sqrt(pow(b,2) - pow(b,2) *pow(this->midPoint.getX(), 2)/pow(a,2))));
-            this->midPoint.setY(-(sqrt(pow(b, 2) - pow(b, 2) * pow(this->midPoint.getX(), 2) / pow(a, 2))) + yo);
+        if (this->midPoint.y > yo)
+            this->midPoint.y = ((sqrt(pow(b, 2) - pow(b, 2) * pow(this->midPoint.x, 2) / pow(a, 2))) + yo);
+        if (this->midPoint.y < yo)
+            // this->midPoint.y = (-(sqrt(pow(b,2) - pow(b,2) *pow(this->midPoint.x, 2)/pow(a,2))));
+            this->midPoint.y = (-(sqrt(pow(b, 2) - pow(b, 2) * pow(this->midPoint.x, 2) / pow(a, 2))) + yo);
     }
 }
 
-void Enemy::elipsoidMove(double a, double b, double yo)
+void Enemy::elipsoidMove(const double& a, const double& b, const double& yo)
 {
-    if (this->midPoint.getX() > a)
-        this->midPoint.setX(this->midPoint.getX() - this->velocity.getX());
+    if (this->midPoint.x > a)
+        this->midPoint.x = (this->midPoint.x - this->velocity.x);
 
-    if ((-a <= this->midPoint.getX()) && (this->midPoint.getX() <= a))
+    if ((-a <= this->midPoint.x) && (this->midPoint.x <= a))
     {
-        if (this->midPoint.getY() > yo)
-            this->midPoint.setX(this->midPoint.getX() - this->velocity.getX());
+        if (this->midPoint.y > yo)
+            this->midPoint.x = (this->midPoint.x - this->velocity.x);
 
-        if (this->midPoint.getY() < yo)
-            this->midPoint.setX(this->midPoint.getX() + this->velocity.getX());
+        if (this->midPoint.y < yo)
+            this->midPoint.x = (this->midPoint.x + this->velocity.x);
 
-        if (this->midPoint.getY() == yo)
+        if (this->midPoint.y == yo)
         {
-            if (this->midPoint.getX() < 0)
+            if (this->midPoint.x < 0)
             {
-                this->midPoint.setY(this->midPoint.getY() - this->velocity.getY());
-                this->midPoint.setX(this->midPoint.getX() + this->velocity.getX());
+                this->midPoint.y = (this->midPoint.y - this->velocity.y);
+                this->midPoint.x = (this->midPoint.x + this->velocity.x);
             }
-            if (this->midPoint.getX() > 0)
+            if (this->midPoint.x > 0)
             {
-                this->midPoint.setY(this->midPoint.getY() + this->velocity.getY());
-                this->midPoint.setX(this->midPoint.getX() - this->velocity.getX());
+                this->midPoint.y = (this->midPoint.y + this->velocity.y);
+                this->midPoint.x = (this->midPoint.x - this->velocity.x);
             }
         }
 
-        if (this->midPoint.getY() > yo)
-            this->midPoint.setY((sqrt(pow(b, 2) - pow(b, 2) * pow(this->midPoint.getX(), 2) / pow(a, 2))) + yo);
-        if (this->midPoint.getY() < yo)
-            // this->midPoint.setY(-(sqrt(pow(b,2) - pow(b,2) *pow(this->midPoint.getX(), 2)/pow(a,2))));
-            this->midPoint.setY(-(sqrt(pow(b, 2) - pow(b, 2) * pow(this->midPoint.getX(), 2) / pow(a, 2))) + yo);
+        if (this->midPoint.y > yo)
+            this->midPoint.y = ((sqrt(pow(b, 2) - pow(b, 2) * pow(this->midPoint.x, 2) / pow(a, 2))) + yo);
+        if (this->midPoint.y < yo)
+            // this->midPoint.y = (-(sqrt(pow(b,2) - pow(b,2) *pow(this->midPoint.x, 2)/pow(a,2))));
+            this->midPoint.y = (-(sqrt(pow(b, 2) - pow(b, 2) * pow(this->midPoint.x, 2) / pow(a, 2))) + yo);
     }
 }
 
 void Enemy::bateVolta(const int &posY)
 {
-    if (this->midPoint.getY() > posY)
+    if (this->midPoint.y > posY)
     {
-        this->midPoint.setY(this->midPoint.getY() + this->velocity.getY());
+        this->midPoint.y = (this->midPoint.y + this->velocity.y);
     }
     else
     {
         if (this->onscreenTestable)
-            if (this->midPoint.getX() + this->min.getX() < -90 || this->midPoint.getX() + this->max.getX() > 90)
-                this->velocity.setX(this->velocity.getX() * (-1));
+            if (this->midPoint.x + this->min.x < -90 || this->midPoint.x + this->max.x > 90)
+                this->velocity.x = (this->velocity.x * (-1));
 
-        this->midPoint.setX(this->midPoint.getX() + this->velocity.getX());
+        this->midPoint.x = (this->midPoint.x + this->velocity.x);
     }
 }
 
@@ -459,11 +460,11 @@ void Enemy::move()
         aim(90);
 
         if (this->onscreenTestable)
-            if (this->midPoint.getX() + this->min.getX() < -90 || this->midPoint.getX() + this->max.getX() > 90)
-                this->velocity.setX(this->velocity.getX() * (-1));
+            if (this->midPoint.x + this->min.x < -90 || this->midPoint.x + this->max.x > 90)
+                this->velocity.x = (this->velocity.x * (-1));
 
-        this->midPoint.setX(this->midPoint.getX() + this->velocity.getX());
-        this->midPoint.setY(this->midPoint.getY() + this->velocity.getY());
+        this->midPoint.x = (this->midPoint.x + this->velocity.x);
+        this->midPoint.y = (this->midPoint.y + this->velocity.y);
         break;
 
     case 3: // parabola  y = x²
@@ -488,8 +489,8 @@ void Enemy::move()
 
     case 7:
         aim(90);
-        if (this->midPoint.getX() > 80)
-            this->midPoint.setX(this->midPoint.getX() - this->velocity.getX());
+        if (this->midPoint.x > 80)
+            this->midPoint.x = (this->midPoint.x - this->velocity.x);
         else
         {
             elipsoidMoveNoEntrance(80 - contador, 80 - contador, 0);
@@ -499,7 +500,7 @@ void Enemy::move()
 
     case 8: // funcao de terceiro com 2 de segundo
         aim(90);
-        if (this->midPoint.getY() >= 60)
+        if (this->midPoint.y >= 60)
             parabolicMoveTemplateFy(9.0 / 160, -27.0 / 4, 405.0 / 2);
         else
             parabolicMoveTemplateFy(-9.0 / 160, 27.0 / 4, -405.0 / 2);
@@ -518,9 +519,9 @@ void Enemy::move()
         break;
 
     case 12:
-        this->midPoint.setY(this->midPoint.getY() + this->velocity.getY());
+        this->midPoint.y = (this->midPoint.y + this->velocity.y);
         if (this->onscreenTestable)
-            this->velocity.setY(this->velocity.getY() - 0.06);
+            this->velocity.y = (this->velocity.y - 0.06);
         break;
 
     case 13:
@@ -528,22 +529,22 @@ void Enemy::move()
         break;
 
     case 14:
-        if (this->midPoint.getX() < this->followPoint.getX() + this->velocity.getX() && this->midPoint.getX() > this->followPoint.getX() - this->velocity.getX())
-            this->midPoint.setX(this->followPoint.getX());
+        if (this->midPoint.x < this->followPoint.x + this->velocity.x && this->midPoint.x > this->followPoint.x - this->velocity.x)
+            this->midPoint.x = (this->followPoint.x);
 
-        if (this->midPoint.getX() > this->followPoint.getX())
-            this->midPoint.setX(this->midPoint.getX() - this->velocity.getX());
+        if (this->midPoint.x > this->followPoint.x)
+            this->midPoint.x = (this->midPoint.x - this->velocity.x);
 
-        else if (this->midPoint.getX() < this->followPoint.getX())
-            this->midPoint.setX(this->midPoint.getX() + this->velocity.getX());
+        else if (this->midPoint.x < this->followPoint.x)
+            this->midPoint.x = (this->midPoint.x + this->velocity.x);
 
-        if (this->midPoint.getY() + this->max.getY() > 90)
-            this->velocity.setY(-abs(this->velocity.getY()));
+        if (this->midPoint.y + this->max.y > 90)
+            this->velocity.y = (-abs(this->velocity.y));
 
-        else if (this->midPoint.getY() + this->min.getY() < 22)
-            this->velocity.setY(abs(this->velocity.getY()));
+        else if (this->midPoint.y + this->min.y < 22)
+            this->velocity.y = (abs(this->velocity.y));
 
-        this->midPoint.setY(this->midPoint.getY() + this->velocity.getY());
+        this->midPoint.y = (this->midPoint.y + this->velocity.y);
         break;
 
     case 15:
@@ -552,11 +553,11 @@ void Enemy::move()
 
     case 16:
         aim(0);
-        this->midPoint.setY(this->midPoint.getY() + this->velocity.getY());
+        this->midPoint.y = (this->midPoint.y + this->velocity.y);
         break;
 
     case 17:
-        this->midPoint.setY(this->midPoint.getY() + this->velocity.getY());
+        this->midPoint.y = (this->midPoint.y + this->velocity.y);
         break;
 
     case 18:
@@ -572,43 +573,43 @@ void Enemy::move()
     case 24: // boss
         if (continueMove == 0)
         {
-            this->midPoint.setX(this->midPoint.getX() + this->velocity.getX());
-            if (this->midPoint.getX() >= 150)
+            this->midPoint.x = (this->midPoint.x + this->velocity.x);
+            if (this->midPoint.x >= 150)
             {
-                this->midPoint.setY(50);
+                this->midPoint.y = (50);
                 continueMove = 1;
             }
         }
         if(continueMove == 1)
         {
-            this->midPoint.setX(this->midPoint.getX() - this->velocity.getX());
-            if (this->midPoint.getX() <= -150)
+            this->midPoint.x = (this->midPoint.x - this->velocity.x);
+            if (this->midPoint.x <= -150)
             {
-                this->midPoint.setY(-200);
-                this->midPoint.setX(0);
+                this->midPoint.y = (-200);
+                this->midPoint.x = (0);
                 continueMove = 2;
             }
         }
         if(continueMove == 2)
         {
-            this->midPoint.setY(this->midPoint.getY() + this->velocity.getY());
+            this->midPoint.y = (this->midPoint.y + this->velocity.y);
         }
         
         if (this->resize < 1)
             this->resize = this->resize + 0.001;
-        if (this->midPoint.getY() > 200)
+        if (this->midPoint.y > 200)
         {
             this->onScreen = false;
         }
         break;
 
     case 25:
-        this->midPoint.setY(this->midPoint.getY() + this->velocity.getY());
+        this->midPoint.y = (this->midPoint.y + this->velocity.y);
         break;
 
     case 26:
-        if (this->midPoint.getY() < -50)
-            this->midPoint.setY(this->midPoint.getY() + this->velocity.getY());
+        if (this->midPoint.y < -50)
+            this->midPoint.y = (this->midPoint.y + this->velocity.y);
         
         continueMove++;
         if(continueMove >= 550)
@@ -616,8 +617,8 @@ void Enemy::move()
         break;
 
     case 27:
-        if (this->midPoint.getY() < 25)
-            this->midPoint.setY(this->midPoint.getY() + this->velocity.getY());
+        if (this->midPoint.y < 25)
+            this->midPoint.y = (this->midPoint.y + this->velocity.y);
 
         continueMove++;
         if(continueMove >= 550)

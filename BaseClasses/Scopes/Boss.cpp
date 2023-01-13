@@ -20,12 +20,12 @@ Boss::Boss()
     this->vidaTotal = 750;
 
 
-    this->midPoint.setX(0);
-    this->midPoint.setY(350);
+    this->midPoint.x = 0;
+    this->midPoint.y = 350;
 
 
-    this->followPoint.setX(0);
-    this->followPoint.setY(0);
+    this->followPoint.x = 0;
+    this->followPoint.y = 0;
 
     srand(time(0));
 }
@@ -40,14 +40,14 @@ void Boss::setHpBoss(){
 
 void Boss::move()
 {
-    double angle = atan2(this->followPoint.getY() - this->midPoint.getY(),
-                         this->followPoint.getX() - this->midPoint.getX());
+    double angle = atan2(this->followPoint.y - this->midPoint.y,
+                         this->followPoint.x - this->midPoint.x);
 
-    this->midPoint.setX(this->midPoint.getX() + cos(angle) * this->velocity.getX());
-    this->midPoint.setY(this->midPoint.getY() + sin(angle) * this->velocity.getY());
+    this->midPoint.x = (this->midPoint.x + cos(angle) * this->velocity.x);
+    this->midPoint.y = (this->midPoint.y + sin(angle) * this->velocity.y);
 
-    if(this->midPoint.getX() > this->followPoint.getX() - 1 && this->midPoint.getX() < this->followPoint.getX() + 1 && 
-        this->midPoint.getY() > this->followPoint.getY() - 1 && this->midPoint.getY() < this->followPoint.getY() + 1)
+    if(this->midPoint.x > this->followPoint.x - 1 && this->midPoint.x < this->followPoint.x + 1 && 
+        this->midPoint.y > this->followPoint.y - 1 && this->midPoint.y < this->followPoint.y + 1)
     {
         int rX = rand()%181 - 90;
         int rY = rand()%81  + 20;

@@ -53,7 +53,7 @@ class Parser
         // carregado com informacoes especificas para cada tipo de construtor
         static std::vector<const char*> parsePath(const char* fileName);
         static Parser parseGeneral(const char* fileName);
-        static char* stringToArray(std::string str);
+        static char* stringToArray(const std::string& str);
         static std::string arrayToString(const char* arr);
 };
 

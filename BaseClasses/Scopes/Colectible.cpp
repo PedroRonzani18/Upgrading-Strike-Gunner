@@ -1,6 +1,6 @@
 #include "../Header/Colectible.h"
 
-Colectible::Colectible(double midX, double midY) : MovableEntity()
+Colectible::Colectible(const double& midX, const double& midY) : MovableEntity()
 { 
     this->upgradeType = 1 + rand()%5; // gera um tipo entre 1 e 4
 
@@ -47,16 +47,16 @@ Colectible::Colectible(double midX, double midY) : MovableEntity()
 
 void Colectible::move()
 {
-    this->midPoint.setY(this->midPoint.getY() + this->velocity.getY());
-    this->midPoint.setX(this->midPoint.getX() + this->velocity.getX());
+    this->midPoint.y = (this->midPoint.y + this->velocity.y);
+    this->midPoint.x = (this->midPoint.x + this->velocity.x);
 
     int i = mantainInsideScreen(*this);
 
     if(i == 1){
-        this->velocity.setY(-this->velocity.getY());
+        this->velocity.y = (-this->velocity.y);
         this->hp--;
     }else if(i == 2){
-        this->velocity.setX(-this->velocity.getX());
+        this->velocity.x = (-this->velocity.x);
         this->hp--;
     }
     this->generalHitBoxMovement();

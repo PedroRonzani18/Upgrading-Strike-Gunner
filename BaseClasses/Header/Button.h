@@ -12,7 +12,7 @@ class Button: public Entity
 
         Button();
         
-        int getCurrentPosition() {return this->currentPosition;}
+        int getCurrentPosition()const{return this->currentPosition;}
         void setCurrentPosition(const int& currentPosition) {this->currentPosition = currentPosition;}
 };
 
