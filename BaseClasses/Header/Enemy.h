@@ -5,6 +5,9 @@
 #include "Ballistic.h"
 #include "Projectile.h"
 #include "../../GeneralFiles/Header/colisionManager.h"
+#include <map>
+#include <variant>
+#include <string>
 
 class Enemy: public MovableEntity, public Ballistic{
     protected:
@@ -13,6 +16,9 @@ class Enemy: public MovableEntity, public Ballistic{
         GLboolean onscreenTestable;
         OrderedPair followPoint;
         int continueMove;
+
+        static std::map<std::string,std::vector<std::variant<int,double,GLboolean,std::vector<int>>>> data;
+        static void createData();
 
     private: 
         double contador;
@@ -64,5 +70,6 @@ class Enemy: public MovableEntity, public Ballistic{
         void scaleMove(const double& scale) override;
         std::vector<Projectile> fire() override;
 };  
+
 
 #endif

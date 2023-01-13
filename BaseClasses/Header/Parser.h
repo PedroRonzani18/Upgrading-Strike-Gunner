@@ -15,46 +15,47 @@
 #include <SDL2/SDL_mixer.h>
 #include <cstring>
 #include <cstdio>
+#include <variant>
+#include <vector>
+#include <map>
 
-class Parser
+struct Parser
 {
-    private:
-        void completeDefaultValues(Parser* parser);
+    Parser();
+    std::vector<float> numberOfEnemies;
+    std::vector<float> type;
+    std::vector<float> typeMove;
+    std::vector<float> numberOfShots;
+    std::vector<float> typeTiroManager;
+    std::vector<float> vx;
+    std::vector<float> vy;
+    std::vector<float> midConstX;
+    std::vector<float> iXSignal;
+    std::vector<float> multiplyerX;
+    std::vector<float> midConstY;
+    std::vector<float> iYSignal;
+    std::vector<float> multiplyerY;
+    std::vector<GLuint> textureId;
+    std::vector<float> resize;
+    std::vector<float> currentProjectileDamage;
+    std::vector<float> minX;
+    std::vector<float> minY;
+    std::vector<float> maxX;
+    std::vector<float> maxY;
+    std::vector<int> randResto;
+    std::vector<float> randMinus;
+    std::vector<std::variant<int,double,GLboolean,std::vector<int>>> data;
 
-    public:
-        Parser();
-        std::vector<float> numberOfEnemies;
-        std::vector<float> type;
-        std::vector<float> typeMove;
-        std::vector<float> numberOfShots;
-        std::vector<float> typeTiroManager;
-        std::vector<float> vx;
-        std::vector<float> vy;
-        std::vector<float> midConstX;
-        std::vector<float> iXSignal;
-        std::vector<float> multiplyerX;
-        std::vector<float> midConstY;
-        std::vector<float> iYSignal;
-        std::vector<float> multiplyerY;
-        std::vector<GLuint> textureId;
-        std::vector<float> resize;
-        std::vector<float> currentProjectileDamage;
-        std::vector<float> minX;
-        std::vector<float> minY;
-        std::vector<float> maxX;
-        std::vector<float> maxY;
-        std::vector<int> randResto;
-        std::vector<float> randMinus;
+    float bossTime;
+    float linhas;
 
-        float bossTime;
-        float linhas;
-
-        // Funcoes que leem arquivos script.txt e retornam um parser 
-        // carregado com informacoes especificas para cada tipo de construtor
-        static std::vector<const char*> parsePath(const char* fileName);
-        static Parser parseGeneral(const char* fileName);
-        static char* stringToArray(const std::string& str);
-        static std::string arrayToString(const char* arr);
+    // Funcoes que leem arquivos script.txt e retornam um parser 
+    // carregado com informacoes especificas para cada tipo de construtor
+    static std::vector<const char*> parsePath(const char* fileName);
+    static Parser parseGeneral(const char* fileName);
+    static char* stringToArray(const std::string& str);
+    static std::string arrayToString(const char* arr);
+    static std::map<std::string,std::vector<std::variant<int, double, std::vector<int>>>> parseData(const char* fileName);
 };
 
 #endif
