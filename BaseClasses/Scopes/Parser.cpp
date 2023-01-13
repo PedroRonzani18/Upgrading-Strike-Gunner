@@ -191,12 +191,8 @@ std::map<std::string,std::vector<std::variant<std::string,int,double,std::vector
                     std::vector<int> numbers_int;
 
                     for (int i=0; i<numbers_str.size(); i++)
-                    {
-                        int num; 
-                        std::stringstream ss2;  
-                        ss2 << numbers_str[i];
-                        numbers_int.push_back(std::stoi(ss2.str()));
-                    }
+                        numbers_int.push_back(std::stoi(numbers_str[i]));
+                    
 
                     semiRetorno.push_back(numbers_int);
                 }
@@ -210,6 +206,7 @@ std::map<std::string,std::vector<std::variant<std::string,int,double,std::vector
             }
 
             mapRetorno[titulo] = semiRetorno;
+            /*
             std::cout << titulo << ": ";
 
             for (auto &j : mapRetorno.at(titulo)) 
@@ -217,22 +214,14 @@ std::map<std::string,std::vector<std::variant<std::string,int,double,std::vector
                 std::visit([](auto&& arg) 
                 {
                     using T = std::decay_t<decltype(arg)>;
-                    if constexpr (std::is_same_v<T, std::string>) 
-                    {   
-                        std::cout << /*"S: " <<*/ arg << std::endl;
-                    } else 
-                    if constexpr (std::is_same_v<T, int>) 
-                    {
-                        std::cout << /*"I: " <<*/ arg << " ";
-                    } else 
-                    if constexpr (std::is_same_v<T, double>) 
-                    {
-                        std::cout << /*"Double: " <<*/ arg << " ";
-                    } else 
-                    if constexpr (std::is_same_v<T, std::vector<int>>) 
+                         if constexpr (std::is_same_v<T, std::string>)      std::cout <<  arg << std::endl;
+                    else if constexpr (std::is_same_v<T, int>)              std::cout << arg << " ";
+                    else if constexpr (std::is_same_v<T, double>)           std::cout <<  arg << " ";
+                    else if constexpr (std::is_same_v<T, std::vector<int>>) 
                     {
                         std::cout << "{";
-                        for (int i = 0; i < arg.size(); i++){
+                        for (int i = 0; i < arg.size(); i++)
+                        {
                             std::cout << arg[i];
                             if(i != arg.size() -1) std::cout << " ";
                         }
@@ -240,8 +229,8 @@ std::map<std::string,std::vector<std::variant<std::string,int,double,std::vector
                     }
                 }, j);
             }
-
             std::cout << std::endl;
+            */
         }
     }
     else std::cout << "Erro na abertura do arquivo." << std::endl;
