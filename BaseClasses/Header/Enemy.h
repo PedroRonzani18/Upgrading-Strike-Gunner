@@ -17,9 +17,6 @@ class Enemy: public MovableEntity, public Ballistic{
         OrderedPair followPoint;
         int continueMove;
 
-        static std::map<std::string,std::vector<std::variant<int,double,GLboolean,std::vector<int>>>> data;
-        static void createData();
-
     private: 
         double contador;
 
@@ -33,6 +30,8 @@ class Enemy: public MovableEntity, public Ballistic{
               const int& displayListModel, const GLboolean& onScreen, const OrderedPair& midPoint, const OrderedPair& max, const OrderedPair& min, const double& resize,
               const Projectile& currentProjectile, const int& numberOfShots, const int& typeTiroManager, const int& fireRatePeriod, const double& alteredFireRate
         );
+
+        static std::map<std::string,std::vector<std::variant<std::string,int,double,std::vector<int>>>> mapRetorno;
 
         Enemy enemySelector(const int& type);
 
@@ -70,6 +69,5 @@ class Enemy: public MovableEntity, public Ballistic{
         void scaleMove(const double& scale) override;
         std::vector<Projectile> fire() override;
 };  
-
 
 #endif

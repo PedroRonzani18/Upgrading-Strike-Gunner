@@ -1,5 +1,6 @@
 #include "../Header/StageManager.h"
 #include "../../GeneralFiles/Header/drawings.h"
+#include "../../GeneralFiles/Header/globalParameters.h"
 
 StageManager::StageManager()
 {
@@ -15,6 +16,7 @@ StageManager::StageManager()
     initializeStages();
 
     Mix_OpenAudio(22050,MIX_DEFAULT_FORMAT,2,4096); // Cria um canal de música
+
 }
 
 void StageManager::turnOffMusic()

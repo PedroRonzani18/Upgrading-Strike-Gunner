@@ -15,9 +15,8 @@ Parser::Parser()
     midConstY.resize(0);
     iYSignal.resize(0);
     multiplyerY.resize(0);
-     textureId.resize(0);
+    textureId.resize(0);
     resize.resize(0);
-    data.resize(0);
 }
 
 std::string Parser::arrayToString(const char* arr)
@@ -164,8 +163,7 @@ std::vector<std::string> tokenize(std::string s, std::string del = " ")
    return retorno;
 }
 
-
-std::map<std::string,std::vector<std::variant<std::string,int,double,std::vector<int>>>> parseData(const char* fileName)
+std::map<std::string,std::vector<std::variant<std::string,int,double,std::vector<int>>>> Parser::parseData(const char* fileName)
 {
     std::map<std::string,std::vector<std::variant<std::string,int,double,std::vector<int>>>> mapRetorno;
     std::fstream arquivo;
@@ -190,7 +188,7 @@ std::map<std::string,std::vector<std::variant<std::string,int,double,std::vector
                     std::vector<std::string> numbers_str = tokenize(subVec,";");
                     std::vector<int> numbers_int;
 
-                    for (int i=0; i<numbers_str.size(); i++)
+                    for (size_t i=0; i<numbers_str.size(); i++)
                         numbers_int.push_back(std::stoi(numbers_str[i]));
                     
 

@@ -19,8 +19,9 @@
 #include <vector>
 #include <map>
 
-struct Parser
+class Parser
 {
+    public:
     Parser();
     std::vector<float> numberOfEnemies;
     std::vector<float> type;
@@ -44,7 +45,6 @@ struct Parser
     std::vector<float> maxY;
     std::vector<int> randResto;
     std::vector<float> randMinus;
-    std::vector<std::variant<int,double,GLboolean,std::vector<int>>> data;
 
     float bossTime;
     float linhas;
@@ -55,7 +55,7 @@ struct Parser
     static Parser parseGeneral(const char* fileName);
     static char* stringToArray(const std::string& str);
     static std::string arrayToString(const char* arr);
-    static std::map<std::string,std::vector<std::variant<int, double, std::vector<int>>>> parseData(const char* fileName);
+    static std::map<std::string,std::vector<std::variant<std::string,int,double,std::vector<int>>>> parseData(const char* fileName);
 };
 
 #endif

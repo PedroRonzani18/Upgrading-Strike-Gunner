@@ -1,32 +1,10 @@
 #include "../Header/Enemy.h"
 #include "../../GeneralFiles/Header/globalParameters.h"
+#include "../../BaseClasses/Header/Parser.h"
 #include <time.h>
 
 #define radianoParaGraus(radianos) (radianos * (180.0 / M_PI))
 #define grausParaRadianos(graus) ((graus * M_PI) / 180.0)
-
-void Enemy::createData()
-{
-    data["dropPercentage"] =    { 15,  90,   8,    6,  90,   50, 25,   100,   5,  100,  15, 100, 100};
-    data["killValue"] =         { 55, 222,  33,   22, 444,  111, 88, 10000,  10,  777,  10, 666, 999};
-    data["angle"] =             {180, 180, 180,  180, 180,    0,  0,     0,   0,    0,   0,   0,   0};
-    data["angularSpeed"] =      {  0,   0,   0,    0,   0,    0,  0,     0,   0,    0,   0,   0,   0};
-    data["currentProjectile"] = {  3,   6,   5,    3,   4,    3,  3,     3,   3,    5,   5,   3,   4};
-    data["typeMove"] =          {  0,   0,   4,    4,   4,    4,  4,     0,   4,   -1,   4,  -1,  -1};
-    data["typeTiroManager"] =   {  0,   1,   1,    1,   1,    1,  3,     0,   3,    2,   1,   0,   4};
-    data["numberOfShots"] =     {  0,   0,   0,    0,   0,    0,  0,     0,   0,    1,   0,   3,   3};
-    data["hp"] =                {  4,  55,   1,    1,  70,   45, 20,  1000,  15,  100,  22, 150, 250};
-    data["onscreenTestable"] =  {GL_FALSE};
-    data["continueMove"] =      {0};
-    data["fireRatePeriod"] =    {0};
-    data["alteredFireRate"] =   {  0,  0.4, 1.20, 1.20,  1,  0.3,  0,     0,  0,  0.7, 0.3, 0.6,   1};
-    data["displayListModel"] =  { 11,   13,   27,   28, 29,   33, 32,    41, 32,   50,  45,  43,  53};
-
-    std::vector<int> aux1 =     {40,15,-20,-18}, aux2 = {23,13}, aux3 = {29,17};
-    data["dimensions"] =        { 20,   20,   15,   20, 20,   24, 17,    50,   0, aux1,  24, aux2, aux3};
-
-}
-
 
 Enemy::Enemy(const int& type, const int& typeMove, const int& numberOfShots, const int& typeTiroManager, const double& vx, const double& vy): 
     Enemy(type)
@@ -77,8 +55,6 @@ Enemy Enemy::enemySelector(const int& type)
 
 Enemy::Enemy(const int& type) : MovableEntity()
 {
-    createData();
-
     srand(time(0));
     this->type = type;
     this->onScreen = GL_TRUE;

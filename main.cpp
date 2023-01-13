@@ -1,4 +1,5 @@
 #include "Stages/Header/StageManager.h"
+#include "BaseClasses/Header/Parser.h"
 #include <memory>
 
 std::unique_ptr<StageManager> stageManager;
@@ -91,6 +92,7 @@ void timer(int t)
 void initialize()
 {
     stageManager = std::make_unique<StageManager>();
+    data = Parser::parseData("Assets/Scripts/EnemyData/data.txt");
 }
 
 int main(int argc, char **argv)
