@@ -10,16 +10,16 @@ class Entity{
     protected:
         int displayListModel;
         GLboolean onScreen;
-        OrderedPair midPoint;
         OrderedPair max;
         OrderedPair min;
+        OrderedPair midPoint;
         std::vector<OrderedPair> hitbox;
         std::vector<OrderedPair> alteredHitbox;
         double resize;
 
     public:
         Entity();
-        Entity(const int& displayListModel, const GLboolean& onScreen, const OrderedPair& midPoint, const OrderedPair& max, const OrderedPair& min, const double& resize);
+        Entity(const int& displayListModel, const GLboolean& onScreen, const OrderedPair& max, const OrderedPair& min, const double& resize);
 
         int getDisplayListModel()const{return this->displayListModel;}
         void setDisplayListModel(const int& displayListModel){this->displayListModel = displayListModel;}

@@ -1,6 +1,7 @@
 #include "Stages/Header/StageManager.h"
+#include <memory>
 
-StageManager* stageManager;
+std::unique_ptr<StageManager> stageManager;
 
 void display()
 {
@@ -89,7 +90,7 @@ void timer(int t)
 
 void initialize()
 {
-    stageManager = new StageManager();
+    stageManager = std::make_unique<StageManager>();
 }
 
 int main(int argc, char **argv)

@@ -19,7 +19,7 @@ class MovableEntity: public Entity
 
         MovableEntity();
         MovableEntity(const OrderedPair& velocity, const double& angle, const double& angularSpeed, const double& hp, const int& type, const int& typeMove,
-                      const int& displayListModel, const GLboolean& onScreen, const OrderedPair& midPoint, const OrderedPair& max, const OrderedPair& min, const double& resize);
+                      const int& displayListModel, const GLboolean& onScreen, const OrderedPair& max, const OrderedPair& min, const double& resize);
 
         OrderedPair& getVelocity(){return this->velocity;}
         void setVelocity(const OrderedPair& velocity){this->velocity = velocity;}

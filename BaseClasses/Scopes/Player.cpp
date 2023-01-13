@@ -2,30 +2,45 @@
 #include "../../GeneralFiles/Header/globalParameters.h"
 #include "../../GeneralFiles/Header/drawings.h"
 #include "../../GeneralFiles/Header/colisionManager.h"
-
-Player::Player() : MovableEntity(), Ballistic()
+#include <iostream>
+Player::Player():
+    MovableEntity(OrderedPair(2,2), 0, 0, 3, 0, 0,textures[14], GL_TRUE, OrderedPair(20,20), OrderedPair(-20,-20), 0.5),
+    Ballistic(Projectile(0), 3, 0, 0, 0.2),
+    imortality(0),
+    scoreHp(Score(1))
 {
-    this->type = 0;
-    this->alteredFireRate = 0.2;
-    this->angle = 0;
-    this->angularSpeed = 0;
-    this->currentProjectile = Projectile(0);
-    this->typeTiroManager = 0;
-    this->displayListModel = textures[14];
-    this->numberOfShots = 3;
-    this->onScreen = GL_TRUE;
-    this->imortality = 0;
-    this->hp = 3;
-    this->fireRatePeriod = 0;
-    this->scoreHp = Score(1);
-
-    this->setMax(20,20);
-    this->setMin(-20,-20);
     this->setResize(0.5);
     this->setHitbox();
     this->setMidPoint();
-    this->setVelocity(2,2);   
 }
+
+
+//Player::Player() : MovableEntity(), Ballistic()
+//{
+//    this->type = 0;
+//    this->alteredFireRate = 0.2;
+//    this->angle = 0;
+//    this->angularSpeed = 0;
+//    this->currentProjectile = Projectile(0);
+//    this->typeTiroManager = 0;
+//    this->displayListModel = textures[14];
+//    this->numberOfShots = 3;
+//    this->onScreen = GL_TRUE;
+//    this->imortality = 0;
+//    this->hp = 3;
+//    this->fireRatePeriod = 0;
+//    this->scoreHp = Score(1);
+//
+//    this->setMax(20,20);
+//    this->setMin(-20,-20);
+//    this->setResize(0.5);
+//    this->setHitbox();
+//    this->setMidPoint();
+//    this->setVelocity(2,2);   
+//
+//    std::cout << this->typeMove << std::endl;
+//}
+
 
 void Player::move()
 {   

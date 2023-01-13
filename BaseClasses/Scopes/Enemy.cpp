@@ -19,7 +19,7 @@ Enemy::Enemy(int killValue, int dropPercentage, GLboolean onscreenTestable, Orde
              const int& displayListModel, const GLboolean& onScreen, const OrderedPair& midPoint, const OrderedPair& max, const OrderedPair& min, const double& resize,
              const Projectile& currentProjectile, const int& numberOfShots, const int& typeTiroManager, const int& fireRatePeriod, const double& alteredFireRate):
 
-    MovableEntity(velocity, angle, angularSpeed, hp, type, typeMove, displayListModel, onScreen, midPoint, max, min, resize),
+    MovableEntity(velocity, angle, angularSpeed, hp, type, typeMove, displayListModel, onScreen, max, min, resize),
     Ballistic(currentProjectile, numberOfShots, typeTiroManager, fireRatePeriod, alteredFireRate),
 
     killValue(killValue),

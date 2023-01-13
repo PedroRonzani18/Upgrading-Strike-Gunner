@@ -1,11 +1,11 @@
 #include "../Header/Entity.h"
 
-Entity::Entity(const int& displayListModel, const GLboolean& onScreen, const OrderedPair& midPoint, const OrderedPair& max, const OrderedPair& min, const double& resize):
+Entity::Entity(const int& displayListModel, const GLboolean& onScreen, const OrderedPair& max, const OrderedPair& min, const double& resize):
         displayListModel(displayListModel),
         onScreen(onScreen),
-        midPoint(midPoint),
         max(max),
         min(min),
+        midPoint(OrderedPair((max.x + min.x)/2, (max.y + min.y)/2)),
         resize(resize)
         {
                 this->hitbox.resize(4);
