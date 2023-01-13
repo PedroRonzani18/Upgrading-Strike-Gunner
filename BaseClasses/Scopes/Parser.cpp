@@ -165,15 +165,11 @@ std::vector<std::string> tokenize(std::string s, std::string del = " ")
 }
 
 
-
-std::map<std::string,std::vector<std::variant<int, double, std::vector<int>>>> Parser::parseData(const char* fileName)
+std::map<std::string,std::vector<std::variant<std::string,int,double,std::vector<int>>>> parseData(const char* fileName)
 {
-    std::map<std::string,std::vector<std::variant<int, double, std::vector<int>>>> retorno;
+    std::map<std::string,std::vector<std::variant<std::string,int,double,std::vector<int>>>> mapRetorno;
     std::fstream arquivo;
     std::string linha;
-    std::string temp;
-    float found;
-    std::stringstream ss;
     
     arquivo.open(fileName,std::fstream::in);
 
@@ -181,26 +177,74 @@ std::map<std::string,std::vector<std::variant<int, double, std::vector<int>>>> P
     {
         while(getline(arquivo,linha))
         {
-            float valor;
-            ss.clear(); ss.str("");
-            ss << linha;
+            std::string titulo = linha.substr(0,linha.find(":"));
+            std::string numeros = linha.substr(linha.find(":")+1);
 
-            while(!ss.eof())
+            std::vector<std::variant<std::string,int,double,std::vector<int>>> semiRetorno;
+
+            for(std::string str: tokenize(numeros,","))
             {
-                ss >> temp;
+                if(str.find("{") != std::string::npos)
+                {
+                    std::string subVec = str.substr(str.find("{")+1,str.find("}")-1);
+                    std::vector<std::string> numbers_str = tokenize(subVec,";");
+                    std::vector<int> numbers_int;
 
-                if(std::stringstream(temp) >> found)
-                    valor = found;
-                                
-                temp = "";
+                    for (int i=0; i<numbers_str.size(); i++)
+                    {
+                        int num; 
+                        std::stringstream ss2;  
+                        ss2 << numbers_str[i];
+                        numbers_int.push_back(std::stoi(ss2.str()));
+                    }
+
+                    semiRetorno.push_back(numbers_int);
+                }
+                else
+                {
+                    std::stringstream ss2; 
+                    ss2 << str;
+                    int num; ss2 >> num;
+                    semiRetorno.push_back(num);
+                }
             }
 
-            std::string titulo = linha.substr(0,linha.find(":"));
-            std::string numeros = linha.substr(linha.find(":"));
-            std::vector<std::string> separados = tokenize(numeros,",");
+            mapRetorno[titulo] = semiRetorno;
+            std::cout << titulo << ": ";
 
-           retorno[titulo]
+            for (auto &j : mapRetorno.at(titulo)) 
+            {
+                std::visit([](auto&& arg) 
+                {
+                    using T = std::decay_t<decltype(arg)>;
+                    if constexpr (std::is_same_v<T, std::string>) 
+                    {   
+                        std::cout << /*"S: " <<*/ arg << std::endl;
+                    } else 
+                    if constexpr (std::is_same_v<T, int>) 
+                    {
+                        std::cout << /*"I: " <<*/ arg << " ";
+                    } else 
+                    if constexpr (std::is_same_v<T, double>) 
+                    {
+                        std::cout << /*"Double: " <<*/ arg << " ";
+                    } else 
+                    if constexpr (std::is_same_v<T, std::vector<int>>) 
+                    {
+                        std::cout << "{";
+                        for (int i = 0; i < arg.size(); i++){
+                            std::cout << arg[i];
+                            if(i != arg.size() -1) std::cout << " ";
+                        }
+                        std::cout << "} ";
+                    }
+                }, j);
+            }
+
+            std::cout << std::endl;
         }
     }
     else std::cout << "Erro na abertura do arquivo." << std::endl;
+
+    return mapRetorno;
 }
