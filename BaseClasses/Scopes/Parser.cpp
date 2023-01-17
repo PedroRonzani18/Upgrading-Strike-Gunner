@@ -194,6 +194,7 @@ std::map<std::string,std::vector<std::variant<std::string,int,double,std::vector
 
                     semiRetorno.push_back(numbers_int);
                 }
+                else if(str == "GL_FALSE") semiRetorno.push_back(GL_FALSE);
                 else
                 {
                     std::stringstream ss2; 
