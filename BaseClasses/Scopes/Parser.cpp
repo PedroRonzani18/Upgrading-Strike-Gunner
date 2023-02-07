@@ -15,7 +15,7 @@ Parser::Parser()
     midConstY.resize(0);
     iYSignal.resize(0);
     multiplyerY.resize(0);
-    textureId.resize(0);
+     textureId.resize(0);
     resize.resize(0);
 }
 
@@ -60,6 +60,7 @@ std::vector<const char*> Parser::parsePath(const char* fileName)
 		    ss >> path;
 
             returnVector.push_back(stringToArray(path));
+            //std::cout << "Dentro: " << returnVector.back() << std::endl;
         }
     }
     else std::cout << "Erro na abertura do arquivo." << std::endl;
@@ -67,6 +68,10 @@ std::vector<const char*> Parser::parsePath(const char* fileName)
     arquivo.close();
 
     return returnVector;
+}
+
+void Parser::completeDefaultValues(Parser* parser)
+{
 }
 
 Parser Parser::parseGeneral(const char* fileName)
@@ -77,7 +82,6 @@ Parser Parser::parseGeneral(const char* fileName)
     std::string temp;
     float found;
     std::stringstream ss;
-    std::vector<std::variant<int,float>> values;
     
     arquivo.open(fileName,std::fstream::in);
 
@@ -95,8 +99,6 @@ Parser Parser::parseGeneral(const char* fileName)
 
                 if(std::stringstream(temp) >> found)
                     valor = found;
-
-                values.push_back(valor);
                                 
                 temp = "";
             }
@@ -135,104 +137,4 @@ Parser Parser::parseGeneral(const char* fileName)
     arquivo.close();
 
     return returnParser;
-}
-
-std::string strip(const std::string &inpt)
-{
-    auto start_it = inpt.begin();
-    auto end_it = inpt.rbegin();
-    while (std::isspace(*start_it))
-        ++start_it;
-    while (std::isspace(*end_it))
-        ++end_it;
-    return std::string(start_it, end_it.base());
-}
-
-std::vector<std::string> tokenize(std::string s, std::string del = " ")
-{
-   using namespace std;
- 
-   vector<string> retorno;
-   int start, end = -1*del.size();
-   do
-   {
-       start = end + del.size();
-       end = s.find(del, start);
-       retorno.push_back(strip(s.substr(start, end - start)));
-   } while (end != -1);
-   return retorno;
-}
-
-std::map<std::string,std::vector<std::variant<std::string,int,double,std::vector<int>>>> Parser::parseData(const char* fileName)
-{
-    std::map<std::string,std::vector<std::variant<std::string,int,double,std::vector<int>>>> mapRetorno;
-    std::fstream arquivo;
-    std::string linha;
-    
-    arquivo.open(fileName,std::fstream::in);
-
-    if(arquivo.is_open())
-    {
-        while(getline(arquivo,linha))
-        {
-            std::string titulo = linha.substr(0,linha.find(":"));
-            std::string numeros = linha.substr(linha.find(":")+1);
-
-            std::vector<std::variant<std::string,int,double,std::vector<int>>> semiRetorno;
-
-            for(std::string str: tokenize(numeros,","))
-            {
-                if(str.find("{") != std::string::npos)
-                {
-                    std::string subVec = str.substr(str.find("{")+1,str.find("}")-1);
-                    std::vector<std::string> numbers_str = tokenize(subVec,";");
-                    std::vector<int> numbers_int;
-
-                    for (size_t i=0; i<numbers_str.size(); i++)
-                        numbers_int.push_back(std::stoi(numbers_str[i]));
-                    
-
-                    semiRetorno.push_back(numbers_int);
-                }
-                else if(str == "GL_FALSE") semiRetorno.push_back(GL_FALSE);
-                else
-                {
-                    std::stringstream ss2; 
-                    ss2 << str;
-                    int num; ss2 >> num;
-                    semiRetorno.push_back(num);
-                }
-            }
-
-            mapRetorno[titulo] = semiRetorno;
-            /*
-            std::cout << titulo << ": ";
-
-            for (auto &j : mapRetorno.at(titulo)) 
-            {
-                std::visit([](auto&& arg) 
-                {
-                    using T = std::decay_t<decltype(arg)>;
-                         if constexpr (std::is_same_v<T, std::string>)      std::cout <<  arg << std::endl;
-                    else if constexpr (std::is_same_v<T, int>)              std::cout << arg << " ";
-                    else if constexpr (std::is_same_v<T, double>)           std::cout <<  arg << " ";
-                    else if constexpr (std::is_same_v<T, std::vector<int>>) 
-                    {
-                        std::cout << "{";
-                        for (int i = 0; i < arg.size(); i++)
-                        {
-                            std::cout << arg[i];
-                            if(i != arg.size() -1) std::cout << " ";
-                        }
-                        std::cout << "} ";
-                    }
-                }, j);
-            }
-            std::cout << std::endl;
-            */
-        }
-    }
-    else std::cout << "Erro na abertura do arquivo." << std::endl;
-
-    return mapRetorno;
 }

@@ -1,83 +1,13 @@
 #include "../Header/Enemy.h"
 #include "../../GeneralFiles/Header/globalParameters.h"
-#include "../../BaseClasses/Header/Parser.h"
 #include <time.h>
 
 #define radianoParaGraus(radianos) (radianos * (180.0 / M_PI))
 #define grausParaRadianos(graus) ((graus * M_PI) / 180.0)
 
-
 Enemy::Enemy(const int& type, const int& typeMove, const int& numberOfShots, const int& typeTiroManager, const double& vx, const double& vy): 
     Enemy(type)
 {
-
-    //
-
-/*
-    this->dropPercentage = 15;
-    this->killValue = 55;
-    this->angle = 180;
-    this->angularSpeed = 0;
-    this->currentProjectile = Projectile(3);
-    this->typeMove = 0;
-    this->typeTiroManager = 0; // determina tipo do tiro
-    this->numberOfShots = 0;
-    this->hp = 4;
-    this->onscreenTestable = GL_FALSE;
-    this->continueMove = 0;
-    this->fireRatePeriod = 0;
-    this->alteredFireRate = 0;
-    this->setDisplayListModel(textures[11]);
-    this->setMax(20, 20);
-    this->setMin(-20, -20);
-    this->setVelocity(1, 1);
-    this->setResize(0.5);
-*/
-
-    if (auto* pString = std::get_if<int>(&data.at("dropPercentage")[type])) {dropPercentage = *pString; }
-    if (auto* pString = std::get_if<int>(&data.at("killValue")[type])) {killValue = *pString; }
-    if (auto* pString = std::get_if<double>(&data.at("angle")[type])) {angle = *pString; }
-    if (auto* pString = std::get_if<double>(&data.at("angularSpeed")[type])) {angularSpeed = *pString; }
-    if (auto* pString = std::get_if<int>(&data.at("currentProjectile")[type])) {currentProjectile = Projectile(*pString); }
-    if (auto* pString = std::get_if<int>(&data.at("typeMove")[type])) {this->typeMove = *pString; }
-    if (auto* pString = std::get_if<int>(&data.at("typeTiroManager")[type])) {this->typeTiroManager = *pString; }
-    if (auto* pString = std::get_if<int>(&data.at("numberOfShots")[type])) {this->numberOfShots = *pString; }
-    if (auto* pString = std::get_if<double>(&data.at("hp")[type])) {this->hp = *pString; }
-    if (auto* pString = std::get_if<int>(&data.at("continueMove")[type])) {this->continueMove = *pString; }
-    if (auto* pString = std::get_if<int>(&data.at("fireRatePeriod")[type])) {this->fireRatePeriod = *pString; }
-    if (auto* pString = std::get_if<double>(&data.at("alteredFireRate")[type])) {setDisplayListModel(textures[*pString]); }
-    if (auto* pString = std::get_if<int>(&data.at("dimensions")[type])) 
-    {
-        this->setMax( *pString, *pString);
-        this->setMin(-*pString,-*pString);
-    }
-    else if(auto* pString = std::get_if<std::vector<int>>(&data.at("dimensions")[type]))
-    {
-        std::vector<int> aux = *pString;
-        this->setMax( aux[0], aux[1]);
-        this->setMin(-aux[2],-aux[3]);
-    }
-    this->onscreenTestable = GL_FALSE;
-
-    this->dropPercentage = 15;
-    this->killValue = 55;
-    this->angle = 180;
-    this->angularSpeed = 0;
-    this->currentProjectile = Projectile(3);
-    this->typeMove = 0;
-    this->typeTiroManager = 0; // determina tipo do tiro
-    this->numberOfShots = 0;
-    this->hp = 4;
-    this->onscreenTestable = GL_FALSE;
-    this->continueMove = 0;
-    this->fireRatePeriod = 0;
-    this->alteredFireRate = 0;
-    this->setDisplayListModel(textures[11]);
-    this->setMax(20, 20);
-    this->setMin(-20, -20);
-    this->setVelocity(1, 1);
-    this->setResize(0.5);
-
     setTypeMove(typeMove);
     setNumberOfShots(numberOfShots);
     setTypeTiroManager(typeTiroManager);
@@ -338,27 +268,6 @@ Enemy::Enemy(const int& type) : MovableEntity()
         this->setResize(0.5);
         break;
 
-    case 10: // mensagem
-        this->dropPercentage = 15;
-        this->killValue = 10;
-        this->angle = 0;
-        this->angularSpeed = 0;
-        this->currentProjectile = Projectile(5);
-        this->typeTiroManager = 1; /**/
-        this->numberOfShots = 0;   // inutilizzadp
-        this->hp = 22;
-        this->onscreenTestable = GL_FALSE;
-        this->typeMove = 4; /**/
-        this->continueMove = 0;
-        this->fireRatePeriod = 0; // tem que ser 0
-        this->alteredFireRate = 0.3;
-        this->setDisplayListModel(textures[45]);
-        this->setMax(24, 24);
-        this->setMin(-24, -24);
-        this->setVelocity(1, 1); // deixar padrao no cosntrutor e talvez mmudar na wave
-        this->setResize(0.5);
-        break;
-
     case 11: // torreta tripla
         this->dropPercentage = 100;
         this->killValue = 666;
@@ -401,6 +310,26 @@ Enemy::Enemy(const int& type) : MovableEntity()
         this->setResize(0.5);
         break;
 
+    case 10: // mensagem
+        this->dropPercentage = 15;
+        this->killValue = 10;
+        this->angle = 0;
+        this->angularSpeed = 0;
+        this->currentProjectile = Projectile(5);
+        this->typeTiroManager = 1; /**/
+        this->numberOfShots = 0;   // inutilizzadp
+        this->hp = 22;
+        this->onscreenTestable = GL_FALSE;
+        this->typeMove = 4; /**/
+        this->continueMove = 0;
+        this->fireRatePeriod = 0; // tem que ser 0
+        this->alteredFireRate = 0.3;
+        this->setDisplayListModel(textures[45]);
+        this->setMax(24, 24);
+        this->setMin(-24, -24);
+        this->setVelocity(1, 1); // deixar padrao no cosntrutor e talvez mmudar na wave
+        this->setResize(0.5);
+        break;
     }
     this->setHitbox();
     this->setMidPoint();

@@ -5,9 +5,6 @@
 #include "Ballistic.h"
 #include "Projectile.h"
 #include "../../GeneralFiles/Header/colisionManager.h"
-#include <map>
-#include <variant>
-#include <string>
 
 class Enemy: public MovableEntity, public Ballistic{
     protected:
@@ -30,8 +27,6 @@ class Enemy: public MovableEntity, public Ballistic{
               const int& displayListModel, const GLboolean& onScreen, const OrderedPair& midPoint, const OrderedPair& max, const OrderedPair& min, const double& resize,
               const Projectile& currentProjectile, const int& numberOfShots, const int& typeTiroManager, const int& fireRatePeriod, const double& alteredFireRate
         );
-
-        static std::map<std::string,std::vector<std::variant<std::string,int,double,std::vector<int>>>> mapRetorno;
 
         Enemy enemySelector(const int& type);
 

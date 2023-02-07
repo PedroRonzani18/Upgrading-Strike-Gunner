@@ -6,6 +6,7 @@
 #include "../../BaseClasses/Header/Colectible.h"
 #include "../../BaseClasses/Header/Boss.h"
 #include "../../BaseClasses/Header/Score.h"
+#include "../../BaseClasses/Header/Parser.h"
 
 #include "../../GeneralFiles/Header/drawings.h"
 #include "../../GeneralFiles/Header/colisionManager.h"
