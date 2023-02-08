@@ -5,6 +5,50 @@
 #define radianoParaGraus(radianos) (radianos * (180.0 / M_PI))
 #define grausParaRadianos(graus) ((graus * M_PI) / 180.0)
 
+
+Enemy::Enemy(const int& type, const int& typeMove, const int& numberOfShots, const int& typeTiroManager, const double& vx, const double& vy):
+
+    MovableEntity
+        (
+        //OrderedPair(enemyDataMap["velocity"][2*type], enemyDataMap["velocity"][2*type+1]),
+        OrderedPair(vx, vy), 
+        enemyDataMap["angle"][type], 
+        enemyDataMap["angularSpeed"][type], 
+        enemyDataMap["hp"][type], 
+        type, 
+        typeMove,
+        enemyDataMap["displayListModel"][type], 
+        GL_TRUE, 
+        OrderedPair(enemyDataMap["dimensions"][4*type], 
+        enemyDataMap["dimensions"][4*type +1]), 
+        OrderedPair(enemyDataMap["dimensions"][4*type +2], 
+        enemyDataMap["dimensions"][4*type +3]), 
+        enemyDataMap["resize"][type]
+        ),
+
+    Ballistic
+        (
+        Projectile(enemyDataMap["currentProjectile"][type]),
+        numberOfShots,
+        typeTiroManager, 
+        0,0
+        ),
+    
+    killValue(enemyDataMap["killValue"][type]),
+    dropPercentage(enemyDataMap["dropPercentage"][type]),
+    onscreenTestable(GL_FALSE),
+    followPoint(OrderedPair()),
+    continueMove(0)
+{
+    /*
+    setTypeMove(typeMove);
+    setNumberOfShots(numberOfShots);
+    setTypeTiroManager(typeTiroManager);
+    setVelocity(vx, vy);
+    */
+}
+
+/*
 Enemy::Enemy(const int& type, const int& typeMove, const int& numberOfShots, const int& typeTiroManager, const double& vx, const double& vy): 
     Enemy(type)
 {
@@ -13,6 +57,7 @@ Enemy::Enemy(const int& type, const int& typeMove, const int& numberOfShots, con
     setTypeTiroManager(typeTiroManager);
     setVelocity(vx, vy);
 }
+*/
 
 Enemy::Enemy(int killValue, int dropPercentage, GLboolean onscreenTestable, OrderedPair followPoint, int continueMove, 
              const OrderedPair& velocity, const double& angle, const double& angularSpeed, const double& hp, const int& type, const int& typeMove,
@@ -28,7 +73,6 @@ Enemy::Enemy(int killValue, int dropPercentage, GLboolean onscreenTestable, Orde
     followPoint(followPoint),
     continueMove(continueMove)
     {}
-
 
 Enemy Enemy::enemySelector(const int& type)
 {
