@@ -16,6 +16,4 @@ extern int frames; // determina o tempo usado na glutTimerFunc
 
 extern int bossTime; // flag que determina se 
 
-extern std::map<std::string,std::vector<float>> enemyDataMap;
-
 #endif

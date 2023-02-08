@@ -6,4 +6,3 @@ int cont = 0;
 int top = 100, bottom = -100, esquerda = -90, direita = 90;
 int frames = 16;
 int bossTime = 0;
-std::map<std::string,std::vector<float>> enemyDataMap;

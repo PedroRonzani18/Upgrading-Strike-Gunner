@@ -3,6 +3,7 @@
 #include "../../GeneralFiles/Header/drawings.h"
 #include "../../GeneralFiles/Header/colisionManager.h"
 #include <iostream>
+
 Player::Player():
     MovableEntity(OrderedPair(2,2), 0, 0, 3, 0, 0,textures[14], GL_TRUE, OrderedPair(20,20), OrderedPair(-20,-20), 0.5),
     Ballistic(Projectile(0), 3, 0, 0, 0.2),

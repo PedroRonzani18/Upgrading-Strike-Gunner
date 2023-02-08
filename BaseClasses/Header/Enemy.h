@@ -5,12 +5,15 @@
 #include "Ballistic.h"
 #include "Projectile.h"
 #include "../../GeneralFiles/Header/colisionManager.h"
+#include <map>
+#include <string>
+#include <vector>
 
 class Enemy: public MovableEntity, public Ballistic{
     protected:
         int killValue; // valor em pontos de matar o inimigo
         int dropPercentage; //probbilidade do inimigo dropar um coletavel 
-        GLboolean onscreenTestable;
+        GLboolean onscreenTestable; 
         OrderedPair followPoint;
         int continueMove;
 
@@ -20,13 +23,14 @@ class Enemy: public MovableEntity, public Ballistic{
     public:
         Enemy(){}
 
-        Enemy(const int& type);
         Enemy(const int& type, const int& typeMove, const int& numberOfShots, const int& typeTiroManager, const double& vx, const double& vy);
         Enemy(int killValue, int dropPercentage, GLboolean onscreenTestable, OrderedPair followPoint, int continueMove, 
               const OrderedPair& velocity, const double& angle, const double& angularSpeed, const double& hp, const int& type, const int& typeMove,
               const int& displayListModel, const GLboolean& onScreen, const OrderedPair& midPoint, const OrderedPair& max, const OrderedPair& min, const double& resize,
               const Projectile& currentProjectile, const int& numberOfShots, const int& typeTiroManager, const int& fireRatePeriod, const double& alteredFireRate
         );
+
+        static std::map<std::string,std::vector<float>> enemyDataMap;
 
         Projectile createProject(Projectile* auxP, const double& angle);
 
