@@ -9,6 +9,7 @@
 #include <fstream>
 #include <algorithm>
 #include <utility>
+#include <map>
 
 // OpenGL
 #include <GL/freeglut.h>
@@ -18,9 +19,6 @@
 
 class Parser
 {
-    private:
-        void completeDefaultValues(Parser* parser);
-
     public:
         Parser();
         std::vector<float> numberOfEnemies;
@@ -55,6 +53,7 @@ class Parser
         static Parser parseGeneral(const char* fileName);
         static char* stringToArray(const std::string& str);
         static std::string arrayToString(const char* arr);
+        static std::map<std::string, std::vector<float>> parseEnemyData(const char* fileName);
 };
 
 #endif

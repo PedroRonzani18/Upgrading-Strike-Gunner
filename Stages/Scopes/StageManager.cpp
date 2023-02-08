@@ -15,6 +15,8 @@ StageManager::StageManager()
     initializeStages();
 
     Mix_OpenAudio(22050,MIX_DEFAULT_FORMAT,2,4096); // Cria um canal de música
+
+    enemyDataMap = Parser::parseEnemyData("Assets/Scripts/EnemyData/data.txt");
 }
 
 void StageManager::turnOffMusic()
