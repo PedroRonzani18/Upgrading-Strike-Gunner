@@ -28,8 +28,6 @@ class Enemy: public MovableEntity, public Ballistic{
               const Projectile& currentProjectile, const int& numberOfShots, const int& typeTiroManager, const int& fireRatePeriod, const double& alteredFireRate
         );
 
-        Enemy enemySelector(const int& type);
-
         Projectile createProject(Projectile* auxP, const double& angle);
 
         int getKillValue()const{return this->killValue;}

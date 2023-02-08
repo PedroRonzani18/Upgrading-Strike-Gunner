@@ -1,6 +1,7 @@
 #include "../Header/Enemy.h"
 #include "../../GeneralFiles/Header/globalParameters.h"
 #include <time.h>
+#include <iostream>
 
 #define radianoParaGraus(radianos) (radianos * (180.0 / M_PI))
 #define grausParaRadianos(graus) ((graus * M_PI) / 180.0)
@@ -17,7 +18,7 @@ Enemy::Enemy(const int& type, const int& typeMove, const int& numberOfShots, con
         enemyDataMap["hp"][type], 
         type, 
         typeMove,
-        enemyDataMap["displayListModel"][type], 
+        textures[enemyDataMap["displayListModel"][type]], 
         GL_TRUE, 
         OrderedPair(enemyDataMap["dimensions"][4*type], 
         enemyDataMap["dimensions"][4*type +1]), 
@@ -31,7 +32,8 @@ Enemy::Enemy(const int& type, const int& typeMove, const int& numberOfShots, con
         Projectile(enemyDataMap["currentProjectile"][type]),
         numberOfShots,
         typeTiroManager, 
-        0,0
+        0,
+        enemyDataMap["alteredFireRate"][type]
         ),
     
     killValue(enemyDataMap["killValue"][type]),
@@ -40,12 +42,19 @@ Enemy::Enemy(const int& type, const int& typeMove, const int& numberOfShots, con
     followPoint(OrderedPair()),
     continueMove(0)
 {
-    /*
-    setTypeMove(typeMove);
-    setNumberOfShots(numberOfShots);
-    setTypeTiroManager(typeTiroManager);
-    setVelocity(vx, vy);
-    */
+    srand(time(0));
+    this->type = type;
+    this->onScreen = GL_TRUE;
+    contador = 0;
+    this->setHitbox();
+    this->setMidPoint();
+    setResize(enemyDataMap["resize"][type]);
+    
+    // setTypeMove(typeMove);
+    // setNumberOfShots(numberOfShots);
+    // setTypeTiroManager(typeTiroManager);
+    // setVelocity(vx, vy);
+    
 }
 
 /*
@@ -73,7 +82,7 @@ Enemy::Enemy(int killValue, int dropPercentage, GLboolean onscreenTestable, Orde
     followPoint(followPoint),
     continueMove(continueMove)
     {}
-
+/*
 Enemy Enemy::enemySelector(const int& type)
 {
     srand(time(0));
@@ -95,7 +104,7 @@ Enemy Enemy::enemySelector(const int& type)
     }
 
 }
-
+*/
 Enemy::Enemy(const int& type) : MovableEntity()
 {
     srand(time(0));
@@ -312,6 +321,27 @@ Enemy::Enemy(const int& type) : MovableEntity()
         this->setResize(0.5);
         break;
 
+    case 10: // mensagem
+        this->dropPercentage = 15;
+        this->killValue = 10;
+        this->angle = 0;
+        this->angularSpeed = 0;
+        this->currentProjectile = Projectile(5);
+        this->typeTiroManager = 1; /**/
+        this->numberOfShots = 0;   // inutilizzadp
+        this->hp = 22;
+        this->onscreenTestable = GL_FALSE;
+        this->typeMove = 4; /**/
+        this->continueMove = 0;
+        this->fireRatePeriod = 0; // tem que ser 0
+        this->alteredFireRate = 0.3;
+        this->setDisplayListModel(textures[45]);
+        this->setMax(24, 24);
+        this->setMin(-24, -24);
+        this->setVelocity(1, 1); // deixar padrao no cosntrutor e talvez mmudar na wave
+        this->setResize(0.5);
+        break;
+
     case 11: // torreta tripla
         this->dropPercentage = 100;
         this->killValue = 666;
@@ -354,27 +384,8 @@ Enemy::Enemy(const int& type) : MovableEntity()
         this->setResize(0.5);
         break;
 
-    case 10: // mensagem
-        this->dropPercentage = 15;
-        this->killValue = 10;
-        this->angle = 0;
-        this->angularSpeed = 0;
-        this->currentProjectile = Projectile(5);
-        this->typeTiroManager = 1; /**/
-        this->numberOfShots = 0;   // inutilizzadp
-        this->hp = 22;
-        this->onscreenTestable = GL_FALSE;
-        this->typeMove = 4; /**/
-        this->continueMove = 0;
-        this->fireRatePeriod = 0; // tem que ser 0
-        this->alteredFireRate = 0.3;
-        this->setDisplayListModel(textures[45]);
-        this->setMax(24, 24);
-        this->setMin(-24, -24);
-        this->setVelocity(1, 1); // deixar padrao no cosntrutor e talvez mmudar na wave
-        this->setResize(0.5);
-        break;
     }
+    
     this->setHitbox();
     this->setMidPoint();
 }
@@ -826,6 +837,7 @@ std::vector<Projectile> Enemy::fire()
     }
 
     double r = 1 + rand() % 20;
+
     this->fireRatePeriod = (this->currentProjectile.getDefaultFireRate() * this->alteredFireRate) * (1 + 2 * r / 20);
 
     return vec;

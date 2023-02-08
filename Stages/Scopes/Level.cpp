@@ -256,7 +256,7 @@ void Level::colider() // proibido.
                     if (player.getImortality() <= 0 && player.getHp() >= 0)
                     {
                         projectiles[i].setHp(0);
-                        
+                        /*
                         if(player.getHp() > 0)
                         {
                             player.setMidPoint(0, -80);
@@ -264,7 +264,7 @@ void Level::colider() // proibido.
                         
                         player.setHp(player.getHp() - projectiles[i].getDamage());
                         player.damage();
-                        
+                        */
                     }
                 }
             }
@@ -276,13 +276,14 @@ void Level::colider() // proibido.
             {
                 enemies[j].setHp(enemies[j].getHp() - player.getCurrentProjectile().getDamage() * 7);
                 
+                /*
                 if(player.getHp() > 0)
                 {
                     player.setMidPoint(0, -80);
                 }
                 player.setHp(player.getHp() - 1);
                 player.damage();
-                
+                */
             }
         }
     }
