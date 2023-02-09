@@ -230,3 +230,33 @@ std::map<std::string,std::vector<float>> Parser::parseEnemyData(const char* file
 
     return returnMap;
 }
+
+std::vector<std::vector<std::string>> Parser::parseTextureData(const char* fileName)
+{
+    std::map<std::string,std::vector<float>> returnMap;
+    std::vector<std::string> titulos;
+    std::fstream arquivo;
+    std::string linha;
+    std::stringstream ss;
+    std::vector<std::vector<std::string>> valores;
+    
+    arquivo.open(fileName,std::fstream::in);
+
+    if(arquivo.is_open())
+    {
+        getline(arquivo,linha);
+
+        titulos = tokenize(linha, ";");
+
+        while(getline(arquivo, linha))
+        {
+            valores.push_back(tokenize(linha, ";"));
+        }
+
+    }
+
+    else if (strcmp(fileName, "0"))std::cout << "Erro de abertura" << std::endl;
+    arquivo.close();
+
+    return valores;
+}

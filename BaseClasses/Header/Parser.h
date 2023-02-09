@@ -54,6 +54,7 @@ class Parser
         static char* stringToArray(const std::string& str);
         static std::string arrayToString(const char* arr);
         static std::map<std::string, std::vector<float>> parseEnemyData(const char* fileName);
+        static std::vector<std::vector<std::string>> parseTextureData(const char* fileName);
 };
 
 #endif

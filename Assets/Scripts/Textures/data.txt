@@ -1,0 +1,60 @@
+ x;   y;                                                 path;        wo; uo,       dw; du
+50;  15; Assets/Images/ajudaNew.png;                                -1; -1;       -1; -1                         
+ 5;   5; Assets/Images/blueBall.png;                                -1; -1;       -1; -1                         
+ 7;   2; Assets/Images/blueLaser.png;                               -1; -1;       -1; -1                          
+ 7;   7; Assets/Images/fireBall.png;                                -1; -1;       -1; -1                                         
+ 2;  20; Assets/Images/greenLaser.png;                              -1; -1;       -1; -1                                     
+50;  15; Assets/Images/iniciarNew.png;                              -1; -1;       -1; -1                                         
+ 5;   5; Assets/Images/orangeBall.png;                              -1; -1;       -1; -1                                         
+ 1;  12; Assets/Images/redLaser.png;                                -1; -1;       -1; -1                                                     
+ 7;   7; Assets/Images/setaNew.png;                                 -1; -1;       -1; -1                                     
+90; 100; Assets/Images/space1.png;                                  -1; -1;       -1; -1                                  
+90; 100; Assets/Images/space2.png;                                  -1; -1;       -1; -1                                  
+25;  25; Assets/Images/spaceship1.png;                              -1; -1;       -1; -1                                    
+20;  25; Assets/Images/spaceship2.png;                              -1; -1;       -1; -1                                  
+20;  20; Assets/Images/spaceship3.png;                              -1; -1;       -1; -1   
+20;  20; Assets/Images/spaceship4.png;                              -1; -1;       -1; -1                          
+90; 100; Assets/Images/ajudaBackgoundNew.png;                       -1; -1;       -1; -1
+ 1;   4; Assets/Images/letrinhasDemasiadamenteMuitoCria.png;         0;  0; 0.105475;  1    
+ 3;   4; Assets/Images/letrinhasDemasiadamenteMuitoCria.png; 0.0483092;  0; 0.105475;  1
+ 3;   4; Assets/Images/letrinhasDemasiadamenteMuitoCria.png;  0.153784;  0; 0.105475;  1
+ 3;   4; Assets/Images/letrinhasDemasiadamenteMuitoCria.png;  0.259259;  0; 0.105475;  1
+ 3;   4; Assets/Images/letrinhasDemasiadamenteMuitoCria.png;  0.364734;  0; 0.105475;  1
+ 3;   4; Assets/Images/letrinhasDemasiadamenteMuitoCria.png;  0.470209;  0; 0.105475;  1
+ 3;   4; Assets/Images/letrinhasDemasiadamenteMuitoCria.png;  0.575684;  0; 0.105475;  1
+ 3;   4; Assets/Images/letrinhasDemasiadamenteMuitoCria.png;  0.681159;  0; 0.105475;  1
+ 3;   4; Assets/Images/letrinhasDemasiadamenteMuitoCria.png;  0.786634;  0; 0.105475;  1
+ 3;   4; Assets/Images/letrinhasDemasiadamenteMuitoCria.png;   0.89211;  0; 0.105475;  1
+ 7;   7; Assets/Images/heart.png;                                   -1; -1;       -1; -1
+15;  15; Assets/Images/spaceship5.png;                              -1; -1;       -1; -1       
+20;  20; Assets/Images/spaceship6.png;                              -1; -1;       -1; -1          
+20;  20; Assets/Images/spaceship7.png;                              -1; -1;       -1; -1          
+90; 100; Assets/Images/backGroundMenu.png;                          -1; -1;       -1; -1              
+20;  20; Assets/Images/asteroidShip.png;                            -1; -1;       -1; -1            
+30;  30; Assets/Images/asteroid.png;                                -1; -1;       -1; -1                                             
+20;  20; Assets/Images/rotationSpecaship.png;                       -1; -1;       -1; -1                 
+10;  10; Assets/Images/coletavelVida.png;                           -1; -1;       -1; -1             
+10;  10; Assets/Images/coletavelFireRate.png;                       -1; -1;       -1; -1                 
+10;  10; Assets/Images/coletavelDamage.png;                         -1; -1;       -1; -1               
+10;  10; Assets/Images/coletavelAumentaNumTiro.png;                 -1; -1;       -1; -1                       
+10;  10; Assets/Images/coletavelTrocaTipoTiro.png;                  -1; -1;       -1; -1                                                           
+90; 100; Assets/Images/redSpace1.png;                               -1; -1;       -1; -1         
+90; 100; Assets/Images/redSpace2.png;                               -1; -1;       -1; -1         
+50;  50; Assets/Images/boss.png;                                    -1; -1;       -1; -1    
+17;  15; Assets/Images/rotationSpecaship.png;                       -1; -1;       -1; -1                 
+30;  20; Assets/Images/trippleTurret.png;                           -1; -1;       -1; -1             
+40; 140; Assets/Images/chadMaster.png;                              -1; -1;       -1; -1          
+80;  40; Assets/Images/level1.png;                                  -1; -1;       -1; -1      
+80;  40; Assets/Images/level2.png;                                  -1; -1;       -1; -1      
+80;  40; Assets/Images/gameOver.png;                                -1; -1;       -1; -1        
+80;  40; Assets/Images/missaoConcluida.png;                         -1; -1;       -1; -1               
+40;  40; Assets/Images/balao.png;                                   -1; -1;       -1; -1     
+30;  25; Assets/Images/torretaGrossa.png;                           -1; -1;       -1; -1             
+40;  10; Assets/Images/barraHp.png;                                 -1; -1;       -1; -1       
+40;  10; Assets/Images/molduraBarraHp.png;                          -1; -1;       -1; -1              
+30;  20; Assets/Images/trippleTurretGG.png;                         -1; -1;       -1; -1               
+90; 100; Assets/Images/creditos1.png;                               -1; -1;       -1; -1         
+90; 100; Assets/Images/creditos2.png;                               -1; -1;       -1; -1         
+90; 100; Assets/Images/creditos3.png;                               -1; -1;       -1; -1         
+90; 100; Assets/Images/creditos4.png;                               -1; -1;       -1; -1                                              
+90; 100; Assets/Images/creditos5.png;                               -1; -1;       -1; -1         
