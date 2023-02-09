@@ -4,8 +4,48 @@
 #include "../../GeneralFiles/Header/colisionManager.h"
 #include <iostream>
 
+std::map<std::string,std::vector<float>> Player::playerDataMap;
+
+
 Player::Player():
-    MovableEntity(OrderedPair(2,2), 0, 0, 3, 0, 0,textures[14], GL_TRUE, OrderedPair(20,20), OrderedPair(-20,-20), 0.5),
+    MovableEntity
+    (
+        OrderedPair(playerDataMap["velocity"][0], playerDataMap["velocity"][1]),   
+        playerDataMap["angle"][0],
+        playerDataMap["angularSpeed"][0],
+        playerDataMap["hp"][0],
+        playerDataMap["type"][0],
+        playerDataMap["typeMove"][0],
+        textures[playerDataMap["displayListModel"][0]],  
+        GL_TRUE,  
+        OrderedPair(playerDataMap["dimensions"][0], playerDataMap["dimensions"][1]),  
+        OrderedPair(playerDataMap["dimensions"][2], playerDataMap["dimensions"][3]),   
+        playerDataMap["resize"][0]
+    ),
+    Ballistic
+    (
+        Projectile(playerDataMap["currentProjectile"][0]),
+        playerDataMap["numberOfShots"][0],
+        playerDataMap["typeTiroManager"][0],
+        playerDataMap["fireRatePeriod"][0],
+        playerDataMap["alteredFireRate"][0]
+    ),
+    imortality(0),
+    scoreHp(Score(1))
+    {
+        setResize(playerDataMap["resize"][0]);
+        setHitbox();
+        setMidPoint();
+    }
+
+
+/*
+Player::Player():
+    MovableEntity
+    (
+        OrderedPair(playerDataMap["velocity"][0], playerDataMap["velocity"][1]), 
+        0, 0, 3, 0, 0,textures[14], GL_TRUE, OrderedPair(20,20), OrderedPair(-20,-20), 0.5
+    ),
     Ballistic(Projectile(0), 3, 0, 0, 0.2),
     imortality(0),
     scoreHp(Score(1))
@@ -14,7 +54,7 @@ Player::Player():
     this->setHitbox();
     this->setMidPoint();
 }
-
+*/
 
 //Player::Player() : MovableEntity(), Ballistic()
 //{

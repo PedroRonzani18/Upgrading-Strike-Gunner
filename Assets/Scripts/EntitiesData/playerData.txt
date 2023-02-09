@@ -1,10 +1,2 @@
-MovableEntity( OrderedPair velocity,   angle,   angularSpeed,   hp,   type,   typeMove,
-                               displayListModel,  GLboolean onScreen,  OrderedPair max,  OrderedPair min,   resize) : 
-
-Ballistic( Projectile currentProjectile,   numberOfShots,   typeTiroManager,   fireRatePeriod,   alteredFireRate)
-
-imortality(0),
-scoreHp(Score(1))
-
-velocity; angle; angularSpeed; hp; type; typeMove; displayListModel;      dimensions; resize; currentProjectile; numberOfShots; typeTiroManager; fireRatePeriod; alteredFireRate
-   {2,2};     0;            0;  3;    0;        0;               14; {20,20,-20,-20};    0.5;
+velocity; angle; angularSpeed; hp; type; typeMove; displayListModel;      dimensions; resize; currentProjectile; numberOfShots; typeTiroManager; fireRatePeriod; alteredFireRate; imortality; scoreHp
+   {2,2};     0;            0;  3;    0;        0;               14; {20,20,-20,-20};    0.5;                 0;             3;               0;              0;             0.2;          0;       1

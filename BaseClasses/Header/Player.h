@@ -4,6 +4,8 @@
 #include "MovableEntity.h"
 #include "Ballistic.h"
 #include "Score.h"
+#include <map>
+#include <string>
 
 class Player: public MovableEntity, public Ballistic
 {
@@ -13,6 +15,8 @@ class Player: public MovableEntity, public Ballistic
 
     public:
         Player();
+
+        static std::map<std::string,std::vector<float>> playerDataMap;
 
         void setHp(const double& hp);
 

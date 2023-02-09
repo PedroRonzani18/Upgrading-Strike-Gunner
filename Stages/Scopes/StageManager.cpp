@@ -10,13 +10,15 @@ StageManager::StageManager()
     this->endLevels = 2;
 
     srand(time(0));
-    
+
     initializeTextures();    //carrega texturas a usar
+
+    Player::playerDataMap = Parser::parseEnemyData("Assets/Scripts/EntitiesData/playerData.txt");
+    Enemy::enemyDataMap =   Parser::parseEnemyData("Assets/Scripts/EntitiesData/enemiesData.txt");
+
     initializeStages();
 
     Mix_OpenAudio(22050,MIX_DEFAULT_FORMAT,2,4096); // Cria um canal de música
-
-    Enemy::enemyDataMap = Parser::parseEnemyData("Assets/Scripts/EntitiesData/enemiesData.txt");
 }
 
 void StageManager::turnOffMusic()
