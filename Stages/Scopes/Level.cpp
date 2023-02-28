@@ -149,7 +149,7 @@ void Level::drawAndMove()
 
     this->player.move(); // movimentação geral do player
     drawModel(&this->player);
-    //drawHitbox(&this->player);
+    drawHitbox(&this->player);
 
     if(bossTime && player.getHp() >= 0){
         boss.move();
@@ -161,7 +161,7 @@ void Level::drawAndMove()
     {
         projectiles[i].move();
         drawModel(&projectiles[i]);
-        //drawHitbox(&projectiles[i]);
+        drawHitbox(&projectiles[i]);
     }
 
     double hp = 0;
@@ -182,7 +182,7 @@ void Level::drawAndMove()
         else
             drawModel(&enemies[i]);
 
-        //drawHitbox(&enemies[i]);
+        drawHitbox(&enemies[i]);
 
         if (enemies[i].getFireRatePeriod() <= 0)
         {
@@ -196,7 +196,7 @@ void Level::drawAndMove()
     {
         colectibles[i].move();
         drawModel(&colectibles[i]);
-        //drawHitbox(&colectibles[i]);
+        drawHitbox(&colectibles[i]);
     }
 
     boss.getHealthBar().setScore(1 - boss.getHp()/boss.getVidaTotal());

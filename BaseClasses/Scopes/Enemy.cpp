@@ -44,31 +44,13 @@ Enemy::Enemy(const int& type, const int& typeMove, const int& numberOfShots, con
     continueMove(0)
 {
     srand(time(0));
+    setResize(enemyDataMap["resize"][type]);    
     this->type = type;
     this->onScreen = GL_TRUE;
     contador = 0;
     this->setHitbox();
     this->setMidPoint();
-    setResize(enemyDataMap["resize"][type]);    
 }
-
-// futuramente tentarei implementar assim pra ficar mais ENGINE
-/*
-Enemy::Enemy(int killValue, int dropPercentage, GLboolean onscreenTestable, OrderedPair followPoint, int continueMove, 
-             const OrderedPair& velocity, const double& angle, const double& angularSpeed, const double& hp, const int& type, const int& typeMove,
-             const int& displayListModel, const GLboolean& onScreen, const OrderedPair& midPoint, const OrderedPair& max, const OrderedPair& min, const double& resize,
-             const Projectile& currentProjectile, const int& numberOfShots, const int& typeTiroManager, const int& fireRatePeriod, const double& alteredFireRate):
-
-    MovableEntity(velocity, angle, angularSpeed, hp, type, typeMove, displayListModel, onScreen, max, min, resize),
-    Ballistic(currentProjectile, numberOfShots, typeTiroManager, fireRatePeriod, alteredFireRate),
-
-    killValue(killValue),
-    dropPercentage(dropPercentage),
-    onscreenTestable(onscreenTestable),
-    followPoint(followPoint),
-    continueMove(continueMove)
-    {}
-*/
 
 Projectile Enemy::createProject(Projectile *auxP, const double& angle)
 {
