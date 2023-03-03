@@ -233,7 +233,6 @@ std::map<std::string,std::vector<float>> Parser::parseEnemyData(const char* file
 
 std::vector<std::vector<std::string>> Parser::parseTextureData(const char* fileName)
 {
-    std::map<std::string,std::vector<float>> returnMap;
     std::vector<std::string> titulos;
     std::fstream arquivo;
     std::string linha;
