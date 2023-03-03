@@ -6,15 +6,16 @@
 - Operating system used: Linux (Ubuntu).
 - Main language: C++
 
-## Necessary libs
+## Necessary Libs on Linux
 
-- Freeglut: `sudo apt-get install freeglut3-dev`
-- SOIL: `sudo apt-get install libsoil-dev`
+* Freeglut: `sudo apt-get install freeglut3-dev`
+* SOIL: `sudo apt-get install libsoil-dev`
+* SDL: `sudo apt-get install -y libsdl2-mixer-dev`
 
 ## How to compile and execute
 
 - Compile: `make all`
-- Run separately: after compiling, use `./main`
+- Run separately: after compiling, use `./Bin/ctc`
 - Compile and run: `make run`
 - Clear: `make clear`
 
