@@ -2,7 +2,7 @@
 #include <iostream>
 
 #define SHOWHITBOX 0
-#define GODMODE 1
+#define GODMODE 0
 
 Level::Level(const int &level)
 {

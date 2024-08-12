@@ -9,5 +9,9 @@ run: all
 	@ echo "Running $(OUTPUT):"
 	@./$(OUTPUT)
 
+exec:
+	@ echo "Running $(OUTPUT):"
+	@./$(OUTPUT)
+
 clean:
 	rm -f $(OUTPUT)
