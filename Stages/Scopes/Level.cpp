@@ -1,6 +1,9 @@
 #include "../Header/Level.h"
 #include <iostream>
 
+#define SHOWHITBOX 0
+#define GODMODE 1
+
 Level::Level(const int &level)
 {
     srand(time(0));
@@ -149,7 +152,8 @@ void Level::drawAndMove()
 
     this->player.move(); // movimentação geral do player
     drawModel(&this->player);
-    drawHitbox(&this->player);
+
+    if(SHOWHITBOX) drawHitbox(&this->player);
 
     if(bossTime && player.getHp() >= 0){
         boss.move();
@@ -161,7 +165,7 @@ void Level::drawAndMove()
     {
         projectiles[i].move();
         drawModel(&projectiles[i]);
-        drawHitbox(&projectiles[i]);
+        if(SHOWHITBOX) drawHitbox(&projectiles[i]);
     }
 
     double hp = 0;
@@ -182,7 +186,7 @@ void Level::drawAndMove()
         else
             drawModel(&enemies[i]);
 
-        drawHitbox(&enemies[i]);
+        if(SHOWHITBOX) drawHitbox(&enemies[i]);
 
         if (enemies[i].getFireRatePeriod() <= 0)
         {
@@ -196,7 +200,7 @@ void Level::drawAndMove()
     {
         colectibles[i].move();
         drawModel(&colectibles[i]);
-        drawHitbox(&colectibles[i]);
+        if(SHOWHITBOX) drawHitbox(&colectibles[i]);
     }
 
     boss.getHealthBar().setScore(1 - boss.getHp()/boss.getVidaTotal());
@@ -256,15 +260,16 @@ void Level::colider() // proibido.
                     if (player.getImortality() <= 0 && player.getHp() >= 0)
                     {
                         projectiles[i].setHp(0);
-                        /*
-                        if(player.getHp() > 0)
-                        {
-                            player.setMidPoint(0, -80);
+
+                        if(!GODMODE) {
+                            if(player.getHp() > 0)
+                            {
+                                player.setMidPoint(0, -80);
+                            }
+                            
+                            player.setHp(player.getHp() - projectiles[i].getDamage());
+                            player.damage();
                         }
-                        
-                        player.setHp(player.getHp() - projectiles[i].getDamage());
-                        player.damage();
-                        */
                     }
                 }
             }
@@ -276,14 +281,14 @@ void Level::colider() // proibido.
             {
                 enemies[j].setHp(enemies[j].getHp() - player.getCurrentProjectile().getDamage() * 7);
                 
-                /*
-                if(player.getHp() > 0)
-                {
-                    player.setMidPoint(0, -80);
+                if(!GODMODE) {
+                    if(player.getHp() > 0)
+                    {
+                        player.setMidPoint(0, -80);
+                    }
+                    player.setHp(player.getHp() - 1);
+                    player.damage();
                 }
-                player.setHp(player.getHp() - 1);
-                player.damage();
-                */
             }
         }
     }
