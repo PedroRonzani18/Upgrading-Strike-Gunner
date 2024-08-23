@@ -1,6 +1,6 @@
 CC = g++
 FLAGS= -g -lglut -lGL -lGLU -lSOIL -lSDL2_mixer -Wall -std=c++20 -O2
-OUTPUT= ./Bin/ctc
+OUTPUT= ./ctc
 all:
 	@ echo "Building target using GCC compile:"
 	@$(CC) -g *.cpp */*/*.cpp $(FLAGS) -o $(OUTPUT)
